@@ -21,6 +21,8 @@ input:focus,textarea:focus{border-color:rgba(255,255,255,0.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fadeout{0%,60%{opacity:1}100%{opacity:0}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.sa-top{padding-top:54px;padding-top:calc(env(safe-area-inset-top,20px) + 34px)}
+.sa-top-sm{padding-top:46px;padding-top:calc(env(safe-area-inset-top,20px) + 26px)}
 </style>
 </head>
 <body>
@@ -31,7 +33,15 @@ input:focus,textarea:focus{border-color:rgba(255,255,255,0.3)}
 <script>
 'use strict';
 const h=React.createElement,{useState,useEffect,useRef,useCallback}=React;
-const ST='max(16px,env(safe-area-inset-top,16px))',SB='env(safe-area-inset-bottom,16px)';
+const SB='env(safe-area-inset-bottom,16px)';
+
+/* Share function */
+async function doShare(title,text){
+  const url=location.href.replace(/app\.html.*/,'');
+  if(navigator.share){try{await navigator.share({title,text,url});return}catch{}}
+  if(navigator.clipboard){try{await navigator.clipboard.writeText(url);alert('Ссылка скопирована!')}catch{}}
+  else{prompt('Скопируйте ссылку:',url)}
+}
 function LS(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch{return null}}
 function getKey(){try{return localStorage.getItem('sl_api')||''}catch{return''}}
 function setKey(k){try{localStorage.setItem('sl_api',k)}catch{}}
@@ -132,7 +142,7 @@ function App(){
   /* ═══ BOOKMARKS ═══ */
   if(scr==='bookmarks'){const g={};bm.forEach(b=>{if(!g[b.category])g[b.category]=[];g[b.category].push(b)});
     return h('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',paddingBottom:40,overflowY:'auto',WebkitOverflowScrolling:'touch'}},
-      h('div',{style:{padding:'calc('+ST+'+8px) 20px 20px',display:'flex',alignItems:'center',gap:12}},
+      h('div',{className:'sa-top',style:{paddingLeft:20,paddingRight:20,paddingBottom:20,display:'flex',alignItems:'center',gap:12}},
         h('button',{onClick:()=>setScr('menu'),style:{background:'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},'\u2190'),
         h('h2',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,margin:0,fontSize:24}},'\uD83D\uDD16 Закладки'),
         h('span',{style:{fontSize:13,color:'rgba(255,255,255,0.3)',fontFamily:"'DM Mono',monospace",marginLeft:'auto'}},bm.length)),
@@ -147,7 +157,7 @@ function App(){
 
   /* ═══ GENERATE ═══ */
   if(scr==='generate'){return h('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',paddingBottom:40,overflowY:'auto',WebkitOverflowScrolling:'touch'}},
-    h('div',{style:{padding:'calc('+ST+'+8px) 20px 16px',display:'flex',alignItems:'center',gap:12}},
+    h('div',{className:'sa-top',style:{paddingLeft:20,paddingRight:20,paddingBottom:16,display:'flex',alignItems:'center',gap:12}},
       h('button',{onClick:()=>{setGP(null);setScr('menu')},style:{background:'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},'\u2190'),
       h('h2',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,margin:0,fontSize:22}},'\uD83E\uDD16 AI Генерация')),
     h('div',{style:{padding:'0 20px'}},
@@ -170,7 +180,7 @@ function App(){
 
   /* ═══ ADD TOPIC ═══ */
   if(scr==='addtopic'){return h('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',paddingBottom:40,overflowY:'auto',WebkitOverflowScrolling:'touch'}},
-    h('div',{style:{padding:'calc('+ST+'+8px) 20px 16px',display:'flex',alignItems:'center',gap:12}},
+    h('div',{className:'sa-top',style:{paddingLeft:20,paddingRight:20,paddingBottom:16,display:'flex',alignItems:'center',gap:12}},
       h('button',{onClick:()=>setScr('menu'),style:{background:'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},'\u2190'),
       h('h2',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,margin:0,fontSize:22}},'\u2795 Новая тема')),
     h('div',{style:{padding:'0 20px'}},
@@ -191,7 +201,7 @@ function App(){
 
   /* ═══ MENU ═══ */
   if(scr==='menu'){return h('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',overflowY:'auto',WebkitOverflowScrolling:'touch',paddingBottom:60}},
-    h('div',{style:{padding:'calc('+ST+'+20px) 24px 0',textAlign:'center'}},
+    h('div',{className:'sa-top',style:{paddingLeft:24,paddingRight:24,paddingBottom:0,textAlign:'center'}},
       h('div',{style:{width:56,height:56,borderRadius:16,background:'#fff',color:'#000',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:28,fontFamily:"'Playfair Display',serif",fontWeight:600,marginBottom:16}},'S'),
       h('h1',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,fontSize:32,margin:'0 0 6px',letterSpacing:-0.5}},'SwipeLearn'),
       h('p',{style:{color:'rgba(255,255,255,0.35)',fontSize:14,fontFamily:"'DM Mono',monospace",margin:0}},'Листай. Учись. Расти.')),
@@ -202,7 +212,8 @@ function App(){
     h('div',{style:{padding:'16px 24px 0',display:'flex',gap:8}},
       h('button',{onClick:()=>setScr('bookmarks'),style:{flex:1,padding:'12px 8px',borderRadius:12,background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.08)',color:'rgba(255,255,255,0.6)',fontSize:13,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:5}},'\uD83D\uDD16',bm.length>0?h('span',{style:{background:'rgba(255,255,255,0.1)',padding:'1px 7px',borderRadius:8,fontSize:11,fontFamily:"'DM Mono',monospace"}},bm.length):'Закладки'),
       h('button',{onClick:()=>setScr('generate'),style:{flex:1,padding:'12px 8px',borderRadius:12,background:'rgba(74,222,128,0.06)',border:'1px solid rgba(74,222,128,0.15)',color:'#4ade80',fontSize:13,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:5}},'\uD83E\uDD16 AI'),
-      h('button',{onClick:()=>setScr('addtopic'),style:{flex:1,padding:'12px 8px',borderRadius:12,background:'rgba(96,165,250,0.06)',border:'1px solid rgba(96,165,250,0.15)',color:'#60a5fa',fontSize:13,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:5}},'\u2795 Тема')),
+      h('button',{onClick:()=>setScr('addtopic'),style:{flex:1,padding:'12px 8px',borderRadius:12,background:'rgba(96,165,250,0.06)',border:'1px solid rgba(96,165,250,0.15)',color:'#60a5fa',fontSize:13,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:5}},'\u2795 Тема'),
+      h('button',{onClick:()=>doShare('SwipeLearn','Учись листая! 327+ карточек по Excel, VBA, языкам и финансам.'),style:{padding:'12px 8px',borderRadius:12,background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.08)',color:'rgba(255,255,255,0.5)',fontSize:15,cursor:'pointer'}},'\uD83D\uDCE4')),
     h('div',{style:{padding:'12px 24px 0'}},
       h('button',{onClick:()=>setShowKey(!showKey),style:{width:'100%',padding:'8px 12px',borderRadius:10,background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.06)',color:'rgba(255,255,255,0.3)',fontSize:11,fontFamily:"'DM Mono',monospace",cursor:'pointer',textAlign:'left'}},apiKey?'\uD83D\uDD11 ...'+apiKey.slice(-8):'\uD83D\uDD11 API ключ'),
       showKey&&h('div',{style:{marginTop:8,display:'flex',gap:8}},h('input',{type:'password',value:apiKey,onChange:e=>hK(e.target.value),placeholder:'sk-ant-api03-...',style:{flex:1,fontFamily:"'DM Mono',monospace"}}),h('button',{onClick:()=>setShowKey(false),style:{padding:'10px 16px',borderRadius:10,background:apiKey?'#4ade80':'rgba(255,255,255,0.06)',border:'none',color:apiKey?'#000':'rgba(255,255,255,0.3)',fontSize:13,fontWeight:600,cursor:'pointer'}},'\u2713'))),
@@ -216,7 +227,7 @@ function App(){
   /* ═══ FEED ═══ */
   const ct=ac.find(c=>c.id===cat),df=DIFF[dif-1];
   return h('div',{onTouchStart:onTS,onTouchEnd:onTE,onWheel:onWh,style:{position:'fixed',inset:0,background:'#0a0a0a',color:'#fff',overflow:'hidden',touchAction:'pan-x'}},
-    h('div',{style:{position:'absolute',top:0,left:0,right:0,zIndex:10,padding:'calc('+ST+'+4px) 16px 12px',display:'flex',alignItems:'center',justifyContent:'space-between',background:'linear-gradient(180deg,rgba(10,10,10,0.98) 0%,rgba(10,10,10,0.8) 70%,transparent 100%)'}},
+    h('div',{className:'sa-top-sm',style:{position:'absolute',top:0,left:0,right:0,zIndex:10,paddingLeft:16,paddingRight:16,paddingBottom:12,display:'flex',alignItems:'center',justifyContent:'space-between',background:'linear-gradient(180deg,rgba(10,10,10,0.98) 0%,rgba(10,10,10,0.8) 70%,transparent 100%)'}},
       h('button',{onClick:()=>{setScr('menu');setCards([])},style:{background:'rgba(255,255,255,0.1)',border:'none',color:'#fff',width:36,height:36,borderRadius:10,fontSize:16,cursor:'pointer',zIndex:20}},'\u2190'),
       h('span',{style:{fontFamily:"'DM Mono',monospace",fontSize:12,color:'rgba(255,255,255,0.4)'}},''+(idx+1)+'/'+cards.length),
       h('div',{style:{width:36}})),
@@ -228,7 +239,8 @@ function App(){
       h('div',{style:{display:'flex',gap:4,alignItems:'center',padding:'6px 14px',borderRadius:20,background:df.color+'12',border:'1px solid '+df.color+'33'}},DIFF.map(d=>h('div',{key:d.id,style:{width:6,height:6,borderRadius:3,background:d.id<=dif?df.color:'rgba(255,255,255,0.1)',transition:'all 0.3s'}})),h('span',{style:{fontSize:11,color:df.color,marginLeft:6,fontFamily:"'DM Mono',monospace"}},df.label)),
       h('button',{onClick:()=>cD(1),disabled:dif>=5,style:{background:'rgba(255,255,255,0.06)',border:'none',color:dif>=5?'rgba(255,255,255,0.15)':df.color,width:40,height:40,borderRadius:12,fontSize:14,cursor:'pointer',fontFamily:"'DM Mono',monospace",opacity:dif>=5?0.5:1}},'\u25B7'),
       h('div',{style:{width:1,height:24,background:'rgba(255,255,255,0.08)'}}),
-      h('button',{onClick:tBM,style:{background:iB?'rgba(255,255,255,0.12)':'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},iB?'\uD83D\uDD16':'\uD83C\uDFF7\uFE0F')),
+      h('button',{onClick:tBM,style:{background:iB?'rgba(255,255,255,0.12)':'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},iB?'\uD83D\uDD16':'\uD83C\uDFF7\uFE0F'),
+      h('button',{onClick:()=>doShare('SwipeLearn','Учись листая! 327+ карточек по Excel, VBA, языкам и финансам.'),style:{background:'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:17,cursor:'pointer'}},'\uD83D\uDCE4')),
     idx===0&&cards.length>0&&h('div',{style:{position:'absolute',bottom:100,left:0,right:0,textAlign:'center',animation:'fadeout 3s forwards'}},h('span',{style:{fontSize:12,color:'rgba(255,255,255,0.2)',fontFamily:"'DM Mono',monospace"}},'\u2191 Свайп')))}
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
