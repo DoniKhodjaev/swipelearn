@@ -1,0 +1,355 @@
+{
+ "1": [
+  {
+   "title": "Present Simple",
+   "subtitle": "Времена",
+   "body": "Для привычных действий, фактов и расписаний. he/she/it + -s.",
+   "example": "I work at a bank. She works in Moscow.\nThe train leaves at 9 AM.",
+   "tip": "Сигналы: always, usually, every day, sometimes, never."
+  },
+  {
+   "title": "Articles: a/an/the",
+   "subtitle": "Артикли",
+   "body": "a/an — неопределённый (впервые, один из). the — определённый (конкретный, известный).",
+   "example": "I saw a dog. The dog was big.\nShe is an engineer at the company.",
+   "tip": "a перед согласным звуком, an перед гласным: a university, an hour."
+  },
+  {
+   "title": "To be: am/is/are",
+   "subtitle": "Глагол быть",
+   "body": "I am, you are, he/she/it is, we are, they are. Сокращения: I'm, you're, he's.",
+   "example": "I'm a banker. She's from Uzbekistan.\nWe're busy today.",
+   "tip": "Вопрос — инверсия: Are you ready? Is he here?"
+  },
+  {
+   "title": "Revenue",
+   "subtitle": "Бизнес-лексика",
+   "body": "Выручка — общая сумма доходов компании от продаж до вычета расходов.",
+   "example": "Our revenue grew by 15% last quarter.\nRevenue vs Profit: revenue is the top line.",
+   "tip": "Revenue = выручка, Profit = прибыль, Income = доход. Не путайте!"
+  },
+  {
+   "title": "Prepositions of time",
+   "subtitle": "Предлоги времени",
+   "body": "at + время (at 5 PM), on + день/дата (on Monday), in + месяц/год/период (in March, in 2026).",
+   "example": "The meeting is at 3 PM on Friday.\nI started in January.",
+   "tip": "at night, at the weekend (BrE), on the weekend (AmE)."
+  },
+  {
+   "title": "Can / Can't",
+   "subtitle": "Модальные глаголы",
+   "body": "Умение и возможность. Одна форма для всех лиц. Без to после.",
+   "example": "I can speak three languages.\nCan you send me the report?",
+   "tip": "Could — более вежливо: Could you help me? Could I have...?"
+  },
+  {
+   "title": "There is / There are",
+   "subtitle": "Конструкции",
+   "body": "Существование. is — единственное число, are — множественное.",
+   "example": "There is a problem with the system.\nThere are five banks in this area.",
+   "tip": "Сокращение: There's a meeting at 2. There're — не используется."
+  },
+  {
+   "title": "Countable / Uncountable",
+   "subtitle": "Исчислимые/неисчислимые",
+   "body": "Countable: a report, reports. Uncountable: money, information, advice — нет множественного!",
+   "example": "I need some information. (НЕ informations)\nCan I give you some advice?",
+   "tip": "money, news, furniture, equipment — всегда единственное число."
+  },
+  {
+   "title": "Stakeholder",
+   "subtitle": "Бизнес-лексика",
+   "body": "Заинтересованная сторона — любое лицо или организация, на которую влияет деятельность компании.",
+   "example": "Key stakeholders include investors, employees, and regulators.",
+   "tip": "Shareholder = акционер (владелец акций). Stakeholder шире — включает всех заинтересованных."
+  },
+  {
+   "title": "Present Continuous",
+   "subtitle": "Времена",
+   "body": "Действие сейчас или запланированное. am/is/are + -ing.",
+   "example": "I'm working on the report right now.\nWe're meeting the client tomorrow.",
+   "tip": "Stative verbs НЕ используются в Continuous: I know (НЕ I'm knowing)."
+  },
+  {
+   "title": "Much / Many / A lot of",
+   "subtitle": "Количество",
+   "body": "much + uncountable, many + countable, a lot of — оба типа.",
+   "example": "We don't have much time.\nHow many clients do you have?",
+   "tip": "В утвердительных лучше a lot of: We have a lot of work (не much work)."
+  },
+  {
+   "title": "Email basics",
+   "subtitle": "Деловая переписка",
+   "body": "Стандартные фразы деловых email на английском.",
+   "example": "Dear Mr. Smith, / Please find attached... / Kind regards,",
+   "tip": "Best regards — нейтрально. Yours sincerely — формально. Cheers — неформально (BrE)."
+  }
+ ],
+ "2": [
+  {
+   "title": "Past Simple",
+   "subtitle": "Времена",
+   "body": "Завершённое действие в прошлом. Regular: +ed. Irregular: went, saw, made.",
+   "example": "We closed the deal last week.\nThe market fell by 3% yesterday.",
+   "tip": "Сигналы: yesterday, last week, ago, in 2020. Did + base form для вопросов."
+  },
+  {
+   "title": "Present Perfect",
+   "subtitle": "Времена",
+   "body": "Связь прошлого с настоящим. have/has + Past Participle. Опыт, результат, незавершённое.",
+   "example": "I have worked here for 5 years.\nHave you ever been to London?",
+   "tip": "for + период (for 3 years), since + момент (since 2020). НИКОГДА с ago/yesterday!"
+  },
+  {
+   "title": "Due Diligence",
+   "subtitle": "Финансовая лексика",
+   "body": "Комплексная проверка компании перед сделкой. Финансовая, юридическая, операционная.",
+   "example": "We need to complete due diligence before closing.\nThe DD process takes 4-6 weeks.",
+   "tip": "DD findings могут убить сделку: скрытые долги, судебные иски, экологические проблемы."
+  },
+  {
+   "title": "Conditionals (1st)",
+   "subtitle": "Условные предложения",
+   "body": "If + Present Simple, will + base form. Реальные условия в будущем.",
+   "example": "If we close the deal, we will earn a big fee.\nIf the rate goes up, bonds will fall.",
+   "tip": "When (уверены что случится) vs If (возможно): When I get home... vs If it rains..."
+  },
+  {
+   "title": "Passive Voice",
+   "subtitle": "Страдательный залог",
+   "body": "be + Past Participle. Фокус на действии, а не на исполнителе.",
+   "example": "The report was prepared by the team.\nNew regulations will be implemented.",
+   "tip": "В деловом английском пассив используется ОЧЕНЬ часто, особенно в отчётах."
+  },
+  {
+   "title": "Leverage",
+   "subtitle": "Финансовая лексика",
+   "body": "Кредитное плечо / использовать ресурсы. Ключевое слово в финансах.",
+   "example": "The company is highly leveraged. (высокая долговая нагрузка)\nWe can leverage our expertise.",
+   "tip": "Leveraged buyout (LBO) = выкуп с привлечением долга. Deleveraging = снижение долга."
+  },
+  {
+   "title": "Comparatives/Superlatives",
+   "subtitle": "Степени сравнения",
+   "body": "Short: -er/-est (bigger, biggest). Long: more/most (more expensive, most profitable).",
+   "example": "This quarter was better than the last.\nIt's the most profitable division.",
+   "tip": "Irregular: good-better-best, bad-worse-worst, far-further-furthest."
+  },
+  {
+   "title": "Reported Speech",
+   "subtitle": "Косвенная речь",
+   "body": "Передача чужих слов. Сдвиг времён: will→would, can→could, is→was.",
+   "example": "He said (that) the deal was closed. (прямая: 'The deal is closed.')\nShe told me she would call back.",
+   "tip": "say (без объекта), tell + кому: He said... He told me..."
+  },
+  {
+   "title": "Compliance",
+   "subtitle": "Банковская лексика",
+   "body": "Соблюдение нормативных требований. Ключевая функция в банке.",
+   "example": "All transactions must comply with AML regulations.\nThe compliance department flagged the transfer.",
+   "tip": "AML = Anti-Money Laundering, KYC = Know Your Customer, CFT = Counter Financing of Terrorism."
+  },
+  {
+   "title": "Modal: should/must/have to",
+   "subtitle": "Модальные глаголы",
+   "body": "should — совет. must — обязанность (внутренняя). have to — обязанность (внешняя).",
+   "example": "You should diversify your portfolio.\nBanks must follow Basel III regulations.\nWe have to submit the report by Friday.",
+   "tip": "mustn't = запрещено. don't have to = не обязательно. Большая разница!"
+  },
+  {
+   "title": "Valuation",
+   "subtitle": "Финансовая лексика",
+   "body": "Оценка стоимости компании/актива. DCF, comparables, precedent transactions.",
+   "example": "The valuation came in at $500 million.\nWhat's the current valuation of the startup?",
+   "tip": "Pre-money valuation (до инвестиций) vs post-money (после)."
+  },
+  {
+   "title": "Phrasal verbs (business)",
+   "subtitle": "Фразовые глаголы",
+   "body": "carry out (выполнять), set up (создать), look into (изучить), turn down (отклонить).",
+   "example": "We need to carry out an analysis.\nThey turned down our proposal.",
+   "tip": "draw up (составить документ), follow up (проконтролировать), bring forward (перенести раньше)."
+  }
+ ],
+ "3": [
+  {
+   "title": "Conditionals (2nd, 3rd)",
+   "subtitle": "Условные предложения",
+   "body": "2nd: If + Past, would + base (нереальное сейчас). 3rd: If + Past Perfect, would have + PP (нереальное в прошлом).",
+   "example": "If I were the CEO, I would restructure. (2nd)\nIf we had invested earlier, we would have doubled. (3rd)",
+   "tip": "I were (не was) — формально правильно в 2nd conditional: If I were you..."
+  },
+  {
+   "title": "Hedge Fund",
+   "subtitle": "Финансовая лексика",
+   "body": "Хедж-фонд: пул капитала с агрессивными стратегиями. Long/short, derivatives, leverage.",
+   "example": "The hedge fund returned 25% last year.\nHedge funds charge '2 and 20' — 2% management + 20% performance.",
+   "tip": "Не путайте: hedge fund (инвестиционный фонд) vs hedging (хеджирование рисков)."
+  },
+  {
+   "title": "Relative Clauses",
+   "subtitle": "Определительные предложения",
+   "body": "who (люди), which (вещи), that (оба), whose (чей), where (место).",
+   "example": "The analyst who wrote the report is here.\nThe deal, which was worth $1B, closed yesterday.",
+   "tip": "Запятые = non-defining (доп. информация). Без запятых = defining (определяет о чём речь)."
+  },
+  {
+   "title": "Yield",
+   "subtitle": "Финансовая лексика",
+   "body": "Доходность — процентный доход от инвестиции. Bond yield, dividend yield.",
+   "example": "The 10-year Treasury yield rose to 4.5%.\nHigh-yield bonds carry more risk.",
+   "tip": "Yield curve — кривая доходности. Inverted yield curve — сигнал рецессии."
+  },
+  {
+   "title": "Perfect Continuous",
+   "subtitle": "Времена",
+   "body": "have been + -ing. Действие началось в прошлом и продолжается (или только что закончилось).",
+   "example": "I've been working on this deal for 3 months.\nWe had been negotiating since January.",
+   "tip": "Акцент на процессе и длительности: I've been reading (процесс) vs I've read 3 books (результат)."
+  },
+  {
+   "title": "Arbitrage",
+   "subtitle": "Финансовая лексика",
+   "body": "Арбитраж — одновременная покупка и продажа актива на разных рынках для извлечения прибыли из разницы цен.",
+   "example": "Currency arbitrage exploits exchange rate differences.\nRisk arbitrage in M&A: buying target stock before deal closes.",
+   "tip": "Pure arbitrage (безрисковый) vs risk arbitrage (с риском что сделка не закроется)."
+  },
+  {
+   "title": "Formal vs Informal Register",
+   "subtitle": "Стилистика",
+   "body": "Formal: commence, utilize, assist. Informal: start, use, help. Для отчётов — formal.",
+   "example": "We commenced operations. (formal)\nWe started work. (informal)",
+   "tip": "В email: формальный = незнакомому; нейтральный = коллеге; informal = другу."
+  },
+  {
+   "title": "Underwriting",
+   "subtitle": "Банковская лексика",
+   "body": "Андеррайтинг — принятие рисков: выпуск ценных бумаг, страхование, кредитование.",
+   "example": "Goldman will underwrite the IPO.\nThe bank underwrites $500M in corporate loans annually.",
+   "tip": "Underwriter = андеррайтер. Lead underwriter = ведущий организатор выпуска."
+  },
+  {
+   "title": "Cleft Sentences",
+   "subtitle": "Эмфатические конструкции",
+   "body": "It is/was... that/who... для выделения части предложения.",
+   "example": "It was the CEO who made the final decision.\nWhat we need is more capital.",
+   "tip": "Часто в презентациях для акцента: What I want to highlight is..."
+  },
+  {
+   "title": "Syndicated Loan",
+   "subtitle": "Банковская лексика",
+   "body": "Синдицированный кредит — крупный кредит от группы банков. Lead arranger организует.",
+   "example": "The $2B syndicated loan was arranged by JP Morgan.\nFive banks participated in the syndicate.",
+   "tip": "Commitment letter → term sheet → credit agreement → closing. Типичный процесс синдикации."
+  }
+ ],
+ "4": [
+  {
+   "title": "Subjunctive Mood",
+   "subtitle": "Сослагательное",
+   "body": "Formal English: suggest/recommend + (that) + subject + base verb.",
+   "example": "The board recommended that he resign.\nIt is essential that every bank comply with regulations.",
+   "tip": "Без -s в 3м лице: It's important that she BE present (не 'is'). Формальный стиль."
+  },
+  {
+   "title": "Covenant",
+   "subtitle": "Финансовая лексика",
+   "body": "Ковенант — условие в кредитном договоре, ограничивающее заёмщика. Financial covenants: Debt/EBITDA, Interest Coverage.",
+   "example": "The company breached its debt covenant.\nMaintenance covenants vs incurrence covenants.",
+   "tip": "Covenant breach → technical default → может привести к acceleration (досрочному требованию погашения)."
+  },
+  {
+   "title": "Inversion for emphasis",
+   "subtitle": "Инверсия",
+   "body": "Not only...but also, Hardly...when, No sooner...than — глагол перед подлежащим.",
+   "example": "Not only did revenue increase, but margins also improved.\nHardly had we signed when the market crashed.",
+   "tip": "Только в формальном/письменном стиле. В речи используется реже."
+  },
+  {
+   "title": "Mezzanine Financing",
+   "subtitle": "Финансовая лексика",
+   "body": "Мезонинное финансирование — гибрид долга и equity. Субординированный долг с equity kicker.",
+   "example": "Mezzanine debt typically carries 12-20% interest.\nThe PE firm used mezz to bridge the equity gap.",
+   "tip": "PIK (Payment-in-Kind) — проценты начисляются, но платятся при погашении/exit."
+  },
+  {
+   "title": "Discourse Markers",
+   "subtitle": "Связность речи",
+   "body": "Слова-связки для презентаций: furthermore, nevertheless, in light of, with regard to.",
+   "example": "Furthermore, our EBITDA margin expanded by 200bps.\nIn light of recent developments, we recommend...",
+   "tip": "Having said that = тем не менее (переход к контраргументу). Очень часто в Q&A."
+  },
+  {
+   "title": "Waterfall Distribution",
+   "subtitle": "PE лексика",
+   "body": "Порядок распределения денег из PE фонда: return of capital → preferred return → GP catch-up → carried interest.",
+   "example": "After the 8% hurdle, the GP receives catch-up to reach 20% carry.",
+   "tip": "European waterfall (весь фонд) vs American waterfall (каждая сделка отдельно)."
+  },
+  {
+   "title": "Nominalisation",
+   "subtitle": "Академический стиль",
+   "body": "Замена глаголов существительными для формального стиля: implement→implementation, analyse→analysis.",
+   "example": "The implementation of new regulations... (вместо: When we implement...)\nUpon completion of the review...",
+   "tip": "Характерно для отчётов, аналитических записок, legal documents."
+  },
+  {
+   "title": "Capital Structure",
+   "subtitle": "Корпоративные финансы",
+   "body": "Структура капитала: соотношение debt и equity. Оптимизация WACC.",
+   "example": "The optimal capital structure minimizes WACC.\nDebt is cheaper than equity due to tax shield.",
+   "tip": "Modigliani-Miller theorem: в идеальном мире структура капитала не влияет на стоимость (на практике — влияет)."
+  }
+ ],
+ "5": [
+  {
+   "title": "Nuanced Hedging Language",
+   "subtitle": "Язык осторожности",
+   "body": "Для аналитических отчётов: arguably, it could be posited that, the evidence suggests.",
+   "example": "It could be argued that the market has overreacted.\nThe data tentatively suggests a recovery.",
+   "tip": "Степени уверенности: certainly > likely > possibly > conceivably. Аналитики используют это мастерски."
+  },
+  {
+   "title": "Distressed Debt",
+   "subtitle": "Специализированная лексика",
+   "body": "Проблемный долг — облигации/кредиты компаний на грани дефолта. Торгуются с дисконтом.",
+   "example": "Distressed debt funds bought the bonds at 40 cents on the dollar.\nChapter 11 filing triggered acceleration clauses.",
+   "tip": "Fulcrum security — ценная бумага, по которой проходит 'разлом' стоимости. Ключ для PE distressed."
+  },
+  {
+   "title": "Rhetorical Devices",
+   "subtitle": "Ораторское мастерство",
+   "body": "Tricolon (тройка), anaphora (повтор начала), antithesis (противопоставление).",
+   "example": "We came, we analyzed, we delivered. (tricolon)\nThis is not about cost. This is about value. (anaphora)",
+   "tip": "Rule of three: три примера, три аргумента, три шага — магическое число для убедительности."
+  },
+  {
+   "title": "Securitization",
+   "subtitle": "Структурированные финансы",
+   "body": "Секьюритизация — объединение активов (кредитов, ипотек) в пул и выпуск ценных бумаг (ABS, MBS, CLO).",
+   "example": "The bank securitized $1B of mortgage loans into RMBS.\nCLO tranches: AAA (senior) → equity (first loss).",
+   "tip": "Tranche (транш) — слой в структуре. Senior tranches → safer, lower yield. Equity → riskier, higher yield."
+  },
+  {
+   "title": "Pragmatics: Implicature",
+   "subtitle": "Прагматика",
+   "body": "Что подразумевается, но не говорится. Ключ к пониманию деловой коммуникации.",
+   "example": "'That's an interesting approach' может означать 'Я не согласен, но не хочу говорить прямо.'",
+   "tip": "'We'll keep your CV on file' = вежливый отказ. Понимание имплицитуры — уровень C2."
+  },
+  {
+   "title": "Structured Products",
+   "subtitle": "Деривативы",
+   "body": "Структурированные продукты: CDO, CDS, IRS, TRS. Комбинации базовых инструментов.",
+   "example": "The credit default swap spread widened to 500bps.\nTotal return swap provides synthetic exposure.",
+   "tip": "Notional amount — номинал (для расчёта платежей). Не путайте с реальной экспозицией."
+  },
+  {
+   "title": "Register Switching",
+   "subtitle": "Мастерство стиля",
+   "body": "Переключение между стилями в зависимости от аудитории и ситуации. Признак C2.",
+   "example": "Board: 'We anticipate margin compression.'\nTeam: 'Margins are gonna get squeezed.'\nClient: 'We expect some pressure on profitability.'",
+   "tip": "Один смысл — три регистра. Мастерство = автоматическое переключение."
+  }
+ ]
+}

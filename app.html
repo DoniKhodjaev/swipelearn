@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SwipeLearn</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body,#root{height:100%;width:100%;overflow:hidden}
+body{background:#0a0a0a;color:#fff;font-family:'Source Sans 3',sans-serif;-webkit-tap-highlight-color:transparent;touch-action:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeout{0%,60%{opacity:1}100%{opacity:0}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="data/cards.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+'use strict';
+const e = React.createElement;
+const {useState, useEffect, useRef, useCallback, useMemo} = React;
+
+const CATEGORIES = [
+  {id:"excel",label:"Excel",sublabel:"Формулы, функции, лайфхаки",type:"tech"},
+  {id:"vba",label:"VBA",sublabel:"Макросы и автоматизация",type:"tech"},
+  {id:"addin",label:"Add-In",sublabel:"Надстройки Excel/Office",type:"tech"},
+  {id:"german",label:"Deutsch",sublabel:"Словарь и грамматика",type:"lang"},
+  {id:"english",label:"English",sublabel:"Vocabulary & Grammar",type:"lang"},
+  {id:"japanese",label:"日本語",sublabel:"Словарь и грамматика",type:"lang"},
+  {id:"ib",label:"Investment Banking",sublabel:"IB знания и термины",type:"finance"},
+  {id:"pe",label:"Private Equity",sublabel:"PE фонды и стратегии",type:"finance"},
+  {id:"cb",label:"Commercial Banking",sublabel:"Банковское дело",type:"finance"},
+];
+
+const CAT_ICONS = {
+  excel:'icons/excel.svg',vba:'icons/vba.svg',addin:'icons/addin.svg',
+  german:'icons/german.svg',english:'icons/english.svg',japanese:'icons/japanese.svg',
+  ib:'icons/ib.svg',pe:'icons/pe.svg',cb:'icons/cb.svg'
+};
+
+const DIFF = [
+  {id:1,label:"Начальный",color:"#4ade80"},
+  {id:2,label:"Базовый",color:"#60a5fa"},
+  {id:3,label:"Средний",color:"#f59e0b"},
+  {id:4,label:"Продвинутый",color:"#f97316"},
+  {id:5,label:"Экспертный",color:"#ef4444"},
+];
+
+const PROMPTS = {
+  excel:l=>`Ты — преподаватель Excel. Карточка уровня ${l}/5 на РУССКОМ. Тема: функция, формула или лайфхак. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  vba:l=>`Ты — преподаватель VBA. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  addin:l=>`Ты — эксперт по надстройкам Excel/Office. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  german:l=>`Ты — преподаватель немецкого. Карточка уровня ${l}/5 на РУССКОМ. Чередуй слово и грамматику. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  english:l=>`Ты — преподаватель английского. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  japanese:l=>`Ты — преподаватель японского. Карточка уровня ${l}/5 на РУССКОМ. Включи кандзи+хирагана. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  ib:l=>`Ты — инвестиционный банкир. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  pe:l=>`Ты — специалист Private Equity. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+  cb:l=>`Ты — эксперт Commercial Banking. Карточка уровня ${l}/5 на РУССКОМ. JSON:{"title":"","subtitle":"","body":"","example":"","tip":""}`,
+};
+
+function parseCard(t){try{const c=t.replace(/```json\s*/g,'').replace(/```/g,'').trim();return JSON.parse(c)}catch{const m=t.match(/\{[\s\S]*\}/);if(m)try{return JSON.parse(m[0])}catch{}return null}}
+
+async function fetchCard(catId,level){
+  const prompt=PROMPTS[catId]?.(level);if(!prompt)return null;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:600,messages:[{role:'user',content:prompt}]})
+    });
+    const data=await res.json();
+    return parseCard(data.content?.map(b=>b.text||'').join('')||'');
+  }catch(err){console.error('API:',err);return null}
+}
+
+function getLocalCards(catId,level){
+  const db=typeof CARD_DATABASE!=='undefined'?CARD_DATABASE:{};
+  const all=db[catId]||[];
+  const filtered=all.filter(c=>c.level===level);
+  if(filtered.length>0)return shuffle([...filtered]);
+  return shuffle([...all]);
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+// Card Component
+function Card(props){
+  const{card,difficulty,category,isActive}=props;
+  const[showEx,setShowEx]=useState(false);
+  const diff=DIFF[difficulty-1]||DIFF[0];
+  const cat=CATEGORIES.find(c=>c.id===category);
+  if(!card)return null;
+
+  return e('div',{style:{position:'absolute',inset:0,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'24px 20px 110px',opacity:isActive?1:0,transition:'opacity 0.3s',overflow:'auto',WebkitOverflowScrolling:'touch'}},
+    // Badges
+    e('div',{style:{display:'flex',gap:8,marginBottom:20,flexShrink:0}},
+      e('span',{style:{background:diff.color+'22',color:diff.color,padding:'4px 12px',borderRadius:20,fontSize:12,fontFamily:"'DM Mono',monospace",letterSpacing:0.5,border:'1px solid '+diff.color+'33'}},diff.label),
+      e('span',{style:{background:'rgba(255,255,255,0.06)',color:'rgba(255,255,255,0.5)',padding:'4px 12px',borderRadius:20,fontSize:12,fontFamily:"'DM Mono',monospace",display:'flex',alignItems:'center',gap:6}},
+        e('img',{src:CAT_ICONS[category],style:{width:16,height:16},alt:''}),cat?.label)
+    ),
+    // Title
+    e('h1',{style:{fontFamily:"'Playfair Display',Georgia,serif",fontSize:card.title?.length>20?28:36,fontWeight:400,color:'#fff',textAlign:'center',lineHeight:1.2,margin:'0 0 8px',maxWidth:340,letterSpacing:-0.5}},card.title),
+    // Subtitle
+    e('p',{style:{fontFamily:"'DM Mono',monospace",fontSize:13,color:'rgba(255,255,255,0.35)',margin:'0 0 24px',textAlign:'center',letterSpacing:1,textTransform:'uppercase'}},card.subtitle),
+    // Body
+    e('p',{style:{fontFamily:"'Source Sans 3',sans-serif",fontSize:16,color:'rgba(255,255,255,0.75)',lineHeight:1.65,textAlign:'center',maxWidth:320,margin:'0 0 20px'}},card.body),
+    // Example
+    card.example&&e('div',{style:{width:'100%',maxWidth:340}},
+      e('button',{onClick:()=>setShowEx(!showEx),style:{background:showEx?'rgba(255,255,255,0.05)':'none',border:'1px solid '+(showEx?'rgba(255,255,255,0.2)':'rgba(255,255,255,0.12)'),color:'rgba(255,255,255,0.6)',padding:'8px 16px',borderRadius:8,fontSize:13,cursor:'pointer',fontFamily:"'DM Mono',monospace",width:'100%',transition:'all 0.2s'}},showEx?'▾ Скрыть пример':'▸ Показать пример'),
+      showEx&&e('pre',{style:{background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.08)',borderRadius:8,padding:14,marginTop:8,fontSize:13,color:'#4ade80',fontFamily:"'DM Mono',monospace",whiteSpace:'pre-wrap',wordBreak:'break-word',lineHeight:1.5,overflow:'auto',maxHeight:160}},card.example)
+    ),
+    // Tip
+    card.tip&&e('div',{style:{marginTop:16,padding:'12px 16px',background:'rgba(255,255,255,0.03)',borderLeft:'2px solid '+diff.color+'44',borderRadius:'0 8px 8px 0',maxWidth:340,width:'100%'}},
+      e('p',{style:{margin:0,fontSize:13,color:'rgba(255,255,255,0.5)',fontFamily:"'Source Sans 3',sans-serif",lineHeight:1.5}},'💡 '+card.tip)
+    )
+  );
+}
+
+// Main App
+function SwipeLearn(){
+  const[screen,setScreen]=useState('menu');
+  const[category,setCat]=useState(null);
+  const[difficulty,setDiff]=useState(1);
+  const[cards,setCards]=useState([]);
+  const[idx,setIdx]=useState(0);
+  const[loading,setLoading]=useState(false);
+  const[bookmarks,setBM]=useState([]);
+  const[showBM,setShowBM]=useState(false);
+  const[apiMode,setApiMode]=useState(false);
+  const touch=useRef({y:0,x:0});
+  const loadRef=useRef(false);
+
+  const loadLocal=useCallback((catId,lvl)=>{
+    const local=getLocalCards(catId,lvl);
+    setCards(local);
+    setIdx(0);
+  },[]);
+
+  const loadMore=useCallback(async(catId,lvl,n=2)=>{
+    if(loadRef.current||!apiMode)return;
+    loadRef.current=true;setLoading(true);
+    const promises=Array.from({length:n},()=>fetchCard(catId,lvl));
+    const results=await Promise.all(promises);
+    const valid=results.filter(Boolean);
+    if(valid.length)setCards(prev=>[...prev,...valid]);
+    setLoading(false);loadRef.current=false;
+  },[apiMode]);
+
+  const startFeed=(catId)=>{setCat(catId);setCards([]);setIdx(0);setScreen('feed')};
+
+  useEffect(()=>{
+    if(screen==='feed'&&category&&cards.length===0)loadLocal(category,difficulty);
+  },[screen,category,difficulty,cards.length,loadLocal]);
+
+  useEffect(()=>{
+    if(screen==='feed'&&apiMode&&cards.length>0&&idx>=cards.length-2)loadMore(category,difficulty);
+  },[idx,cards.length,screen,category,difficulty,loadMore,apiMode]);
+
+  const onTS=e=>{touch.current.y=e.touches[0].clientY;touch.current.x=e.touches[0].clientX};
+  const onTE=ev=>{
+    const dy=touch.current.y-ev.changedTouches[0].clientY;
+    const dx=Math.abs(touch.current.x-ev.changedTouches[0].clientX);
+    if(Math.abs(dy)>60&&Math.abs(dy)>dx){
+      if(dy>0&&idx<cards.length-1)setIdx(i=>i+1);
+      if(dy<0&&idx>0)setIdx(i=>i-1);
+    }
+  };
+  const wt=useRef(null);
+  const onWheel=ev=>{if(wt.current)return;wt.current=setTimeout(()=>{wt.current=null},400);if(ev.deltaY>30&&idx<cards.length-1)setIdx(i=>i+1);if(ev.deltaY<-30&&idx>0)setIdx(i=>i-1)};
+
+  useEffect(()=>{
+    const h=ev=>{if(screen!=='feed')return;if(ev.key==='ArrowDown'&&idx<cards.length-1)setIdx(i=>i+1);if(ev.key==='ArrowUp'&&idx>0)setIdx(i=>i-1);if(ev.key==='Escape'){setScreen('menu');setCards([])}};
+    window.addEventListener('keydown',h);return()=>window.removeEventListener('keydown',h);
+  },[screen,idx,cards.length]);
+
+  const toggleBM=()=>{const c=cards[idx];if(!c)return;setBM(p=>{const ex=p.find(b=>b.title===c.title&&b.category===category);if(ex)return p.filter(b=>!(b.title===c.title&&b.category===category));return[...p,{...c,category,difficulty}]})};
+  const isBM=cards[idx]&&bookmarks.find(b=>b.title===cards[idx]?.title&&b.category===category);
+
+  const changeDiff=dir=>{setDiff(d=>{const n=d+dir;if(n<1||n>5)return d;return n});setCards([]);setIdx(0)};
+
+  // Bookmarks
+  if(showBM){
+    return e('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',fontFamily:"'Source Sans 3',sans-serif",padding:'0 0 40px',overflow:'auto'}},
+      e('div',{style:{padding:'60px 20px 20px',display:'flex',alignItems:'center',gap:12}},
+        e('button',{onClick:()=>setShowBM(false),style:{background:'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},'←'),
+        e('h2',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,margin:0,fontSize:24}},'Закладки ('+bookmarks.length+')')
+      ),
+      e('div',{style:{padding:'0 20px'}},
+        bookmarks.length===0&&e('p',{style:{color:'rgba(255,255,255,0.3)',textAlign:'center',marginTop:60}},'Нажмите 🔖 в ленте чтобы сохранить карточку.'),
+        bookmarks.map((b,i)=>{
+          const cat=CATEGORIES.find(c=>c.id===b.category);const df=DIFF[(b.difficulty||1)-1];
+          return e('div',{key:i,style:{background:'rgba(255,255,255,0.03)',borderRadius:12,padding:16,marginBottom:12,border:'1px solid rgba(255,255,255,0.06)'}},
+            e('div',{style:{display:'flex',gap:8,marginBottom:8}},
+              e('span',{style:{fontSize:11,color:df?.color,opacity:0.7,fontFamily:"'DM Mono',monospace"}},df?.label),
+              e('span',{style:{fontSize:11,color:'rgba(255,255,255,0.3)',fontFamily:"'DM Mono',monospace"}},cat?.label)
+            ),
+            e('h3',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,margin:'0 0 4px',fontSize:18}},b.title),
+            e('p',{style:{margin:0,fontSize:14,color:'rgba(255,255,255,0.5)',lineHeight:1.5}},b.body)
+          )
+        })
+      )
+    );
+  }
+
+  // Menu
+  if(screen==='menu'){
+    const groups=[{label:'Технологии',type:'tech'},{label:'Языки',type:'lang'},{label:'Финансы',type:'finance'}];
+    const db=typeof CARD_DATABASE!=='undefined'?CARD_DATABASE:{};
+
+    return e('div',{style:{minHeight:'100vh',background:'#0a0a0a',color:'#fff',fontFamily:"'Source Sans 3',sans-serif",overflow:'auto',paddingBottom:40}},
+      // Header
+      e('div',{style:{padding:'56px 24px 0',textAlign:'center'}},
+        e('div',{style:{width:56,height:56,borderRadius:16,background:'#fff',color:'#000',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:28,fontFamily:"'Playfair Display',serif",fontWeight:600,marginBottom:16}},'S'),
+        e('h1',{style:{fontFamily:"'Playfair Display',serif",fontWeight:400,fontSize:32,margin:'0 0 6px',letterSpacing:-0.5}},'SwipeLearn'),
+        e('p',{style:{color:'rgba(255,255,255,0.35)',fontSize:14,fontFamily:"'DM Mono',monospace",margin:'0 0 8px'}},'Листай. Учись. Расти.')
+      ),
+      // Difficulty
+      e('div',{style:{padding:'20px 24px 0'}},
+        e('p',{style:{fontSize:11,color:'rgba(255,255,255,0.3)',fontFamily:"'DM Mono',monospace",textTransform:'uppercase',letterSpacing:1.5,margin:'0 0 10px'}},'Уровень сложности'),
+        e('div',{style:{display:'flex',gap:6}},
+          DIFF.map(d=>e('button',{key:d.id,onClick:()=>setDiff(d.id),style:{flex:1,padding:'10px 4px',borderRadius:10,background:difficulty===d.id?d.color+'18':'rgba(255,255,255,0.03)',border:'1px solid '+(difficulty===d.id?d.color+'44':'rgba(255,255,255,0.06)'),color:difficulty===d.id?d.color:'rgba(255,255,255,0.3)',fontSize:11,fontFamily:"'DM Mono',monospace",cursor:'pointer',transition:'all 0.2s'}},d.id))
+        ),
+        e('p',{style:{textAlign:'center',fontSize:12,margin:'6px 0 0',color:DIFF[difficulty-1].color,opacity:0.7,fontFamily:"'DM Mono',monospace"}},DIFF[difficulty-1].label)
+      ),
+      // API toggle
+      e('div',{style:{padding:'16px 24px 0'}},
+        e('button',{onClick:()=>setApiMode(!apiMode),style:{width:'100%',padding:12,borderRadius:12,background:apiMode?'rgba(74,222,128,0.08)':'rgba(255,255,255,0.03)',border:'1px solid '+(apiMode?'rgba(74,222,128,0.2)':'rgba(255,255,255,0.08)'),color:apiMode?'#4ade80':'rgba(255,255,255,0.4)',fontSize:13,fontFamily:"'DM Mono',monospace",cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:8}},
+          e('span',{style:{width:8,height:8,borderRadius:4,background:apiMode?'#4ade80':'rgba(255,255,255,0.2)'}}),
+          apiMode?'AI генерация: ВКЛ (Haiku 4.5)':'AI генерация: ВЫКЛ (офлайн)'
+        )
+      ),
+      // Bookmarks
+      bookmarks.length>0&&e('div',{style:{padding:'12px 24px 0'}},
+        e('button',{onClick:()=>setShowBM(true),style:{width:'100%',padding:12,borderRadius:12,background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.08)',color:'rgba(255,255,255,0.6)',fontSize:14,fontFamily:"'Source Sans 3',sans-serif",cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:8}},
+          '🔖 Закладки ',e('span',{style:{background:'rgba(255,255,255,0.1)',padding:'2px 8px',borderRadius:10,fontSize:12,fontFamily:"'DM Mono',monospace"}},bookmarks.length))
+      ),
+      // Categories
+      e('div',{style:{padding:'24px 24px 0'}},
+        groups.map(g=>e('div',{key:g.type,style:{marginBottom:24}},
+          e('p',{style:{fontSize:11,color:'rgba(255,255,255,0.25)',fontFamily:"'DM Mono',monospace",textTransform:'uppercase',letterSpacing:1.5,margin:'0 0 10px'}},g.label),
+          e('div',{style:{display:'flex',flexDirection:'column',gap:8}},
+            CATEGORIES.filter(c=>c.type===g.type).map(cat=>{
+              const count=(db[cat.id]||[]).length;
+              return e('button',{key:cat.id,onClick:()=>startFeed(cat.id),style:{display:'flex',alignItems:'center',gap:14,padding:'14px 16px',borderRadius:14,background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.06)',color:'#fff',cursor:'pointer',transition:'all 0.2s',textAlign:'left',width:'100%'}},
+                e('img',{src:CAT_ICONS[cat.id],style:{width:40,height:40},alt:''}),
+                e('div',null,
+                  e('div',{style:{fontSize:16,fontWeight:400}},cat.label),
+                  e('div',{style:{fontSize:12,color:'rgba(255,255,255,0.3)',fontFamily:"'DM Mono',monospace",marginTop:2}},cat.sublabel)
+                ),
+                e('div',{style:{marginLeft:'auto',display:'flex',alignItems:'center',gap:8}},
+                  count>0&&e('span',{style:{fontSize:11,color:'rgba(255,255,255,0.2)',fontFamily:"'DM Mono',monospace"}},count),
+                  e('span',{style:{color:'rgba(255,255,255,0.15)',fontSize:18}},'→')
+                )
+              )
+            })
+          )
+        ))
+      )
+    );
+  }
+
+  // Feed
+  const cat=CATEGORIES.find(c=>c.id===category);
+  const diff=DIFF[difficulty-1];
+
+  return e('div',{onTouchStart:onTS,onTouchEnd:onTE,onWheel:onWheel,style:{position:'fixed',inset:0,background:'#0a0a0a',color:'#fff',fontFamily:"'Source Sans 3',sans-serif",overflow:'hidden',touchAction:'none'}},
+    // Top bar
+    e('div',{style:{position:'absolute',top:0,left:0,right:0,zIndex:10,padding:'12px 16px',display:'flex',alignItems:'center',justifyContent:'space-between',background:'linear-gradient(180deg,rgba(10,10,10,0.95) 0%,transparent 100%)'}},
+      e('button',{onClick:()=>{setScreen('menu');setCards([])},style:{background:'rgba(255,255,255,0.08)',border:'none',color:'#fff',width:36,height:36,borderRadius:10,fontSize:16,cursor:'pointer'}},'←'),
+      e('span',{style:{fontFamily:"'DM Mono',monospace",fontSize:12,color:'rgba(255,255,255,0.4)'}},''+(idx+1)+' / '+cards.length),
+      e('div',{style:{width:36}})
+    ),
+    // Cards
+    cards.map((card,i)=>e(Card,{key:i,card:card,difficulty:difficulty,category:category,isActive:i===idx})),
+    // Loading
+    loading&&cards.length===0&&e('div',{style:{position:'absolute',inset:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}},
+      e('div',{style:{width:32,height:32,border:'2px solid rgba(255,255,255,0.1)',borderTopColor:'#fff',borderRadius:'50%',animation:'spin 0.8s linear infinite'}}),
+      e('p',{style:{color:'rgba(255,255,255,0.3)',fontSize:13,marginTop:16,fontFamily:"'DM Mono',monospace"}},'Загрузка...')
+    ),
+    // End of local cards notice
+    !apiMode&&cards.length>0&&idx>=cards.length-1&&e('div',{style:{position:'absolute',bottom:100,left:0,right:0,textAlign:'center'}},
+      e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.2)',fontFamily:"'DM Mono',monospace"}},'Все офлайн-карточки просмотрены. Включите AI в меню для новых.')
+    ),
+    // Bottom bar
+    e('div',{style:{position:'absolute',bottom:0,left:0,right:0,padding:'16px 20px 28px',background:'linear-gradient(0deg,rgba(10,10,10,0.98) 0%,transparent 100%)',display:'flex',justifyContent:'center',gap:12,alignItems:'center'}},
+      e('button',{onClick:()=>changeDiff(-1),disabled:difficulty<=1,style:{background:'rgba(255,255,255,0.06)',border:'none',color:difficulty<=1?'rgba(255,255,255,0.15)':diff.color,width:40,height:40,borderRadius:12,fontSize:14,cursor:'pointer',fontFamily:"'DM Mono',monospace",opacity:difficulty<=1?0.5:1}},'◁'),
+      e('div',{style:{display:'flex',gap:4,alignItems:'center',padding:'6px 14px',borderRadius:20,background:diff.color+'12',border:'1px solid '+diff.color+'33'}},
+        DIFF.map(d=>e('div',{key:d.id,style:{width:6,height:6,borderRadius:3,background:d.id<=difficulty?diff.color:'rgba(255,255,255,0.1)',transition:'all 0.3s'}})),
+        e('span',{style:{fontSize:11,color:diff.color,marginLeft:6,fontFamily:"'DM Mono',monospace"}},diff.label)
+      ),
+      e('button',{onClick:()=>changeDiff(1),disabled:difficulty>=5,style:{background:'rgba(255,255,255,0.06)',border:'none',color:difficulty>=5?'rgba(255,255,255,0.15)':diff.color,width:40,height:40,borderRadius:12,fontSize:14,cursor:'pointer',fontFamily:"'DM Mono',monospace",opacity:difficulty>=5?0.5:1}},'▷'),
+      e('div',{style:{width:1,height:24,background:'rgba(255,255,255,0.08)'}}),
+      e('button',{onClick:toggleBM,style:{background:isBM?'rgba(255,255,255,0.12)':'rgba(255,255,255,0.06)',border:'none',color:'#fff',width:40,height:40,borderRadius:12,fontSize:18,cursor:'pointer'}},isBM?'🔖':'🏷️')
+    ),
+    // Swipe hint
+    idx===0&&cards.length>0&&e('div',{style:{position:'absolute',bottom:90,left:0,right:0,textAlign:'center',animation:'fadeout 3s forwards'}},
+      e('span',{style:{fontSize:12,color:'rgba(255,255,255,0.2)',fontFamily:"'DM Mono',monospace"}},'↑ Свайп вверх для следующей карточки')
+    )
+  );
+}
+
+// Register SW & Mount
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+ReactDOM.createRoot(document.getElementById('root')).render(e(SwipeLearn));
+</script>
+</body>
+</html>

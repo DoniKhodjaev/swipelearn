@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="SwipeLearn — обучающие карточки в стиле TikTok. Excel, VBA, языки, инвестбанкинг.">
+<title>SwipeLearn — Листай. Учись. Расти.</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.svg">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--fg:#fff;--muted:rgba(255,255,255,0.4);--subtle:rgba(255,255,255,0.06);--accent:#4ade80;--accent2:#60a5fa;--accent3:#f59e0b}
+body{background:var(--bg);color:var(--fg);font-family:'Source Sans 3',sans-serif;overflow-x:hidden;min-height:100vh}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 50% 30%,rgba(74,222,128,0.04) 0%,transparent 60%);pointer-events:none}
+.logo{width:80px;height:80px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 0 60px rgba(74,222,128,0.15);position:relative}
+.logo span{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#0a0a0a}
+.logo::after{content:'';position:absolute;inset:-2px;border-radius:24px;background:linear-gradient(135deg,rgba(74,222,128,0.3),transparent,rgba(96,165,250,0.2));z-index:-1}
+h1{font-family:'Playfair Display',serif;font-size:clamp(36px,8vw,56px);font-weight:400;letter-spacing:-1px;line-height:1.1;margin-bottom:12px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600}
+.tagline{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:40px}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:14px;background:#fff;color:#0a0a0a;font-size:17px;font-weight:600;font-family:'Source Sans 3',sans-serif;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(255,255,255,0.1)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.15)}
+.cta .arrow{transition:transform 0.3s}.cta:hover .arrow{transform:translateX(4px)}
+.stats{display:flex;gap:32px;margin-top:48px}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:0.5px}
+section{padding:80px 24px;max-width:800px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;margin-bottom:32px;line-height:1.3}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.features{grid-template-columns:1fr}}
+.feature{padding:20px;border-radius:16px;background:var(--subtle);border:1px solid rgba(255,255,255,0.06);transition:all 0.3s}
+.feature:hover{border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.08)}
+.feature-icon{font-size:28px;margin-bottom:10px}
+.feature h3{font-size:16px;font-weight:500;margin-bottom:6px}
+.feature p{font-size:13px;color:var(--muted);line-height:1.5}
+.topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.topic{padding:10px 18px;border-radius:12px;background:var(--subtle);border:1px solid rgba(255,255,255,0.06);font-size:14px;display:flex;align-items:center;gap:8px;transition:all 0.3s}
+.topic:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.14)}
+.topic img{width:24px;height:24px;border-radius:6px}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--subtle)}
+footer p{font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.2)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.scroll-hint{position:absolute;bottom:32px;animation:float 2s ease-in-out infinite;font-size:20px;color:var(--muted);opacity:0.4}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="logo"><span>S</span></div>
+  <h1><em>SwipeLearn</em></h1>
+  <p class="tagline">Листай · Учись · Расти</p>
+  <a href="app.html" class="cta">Начать обучение <span class="arrow">→</span></a>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">327+</div><div class="stat-label">Карточек</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Направлений</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Уровней</div></div>
+  </div>
+  <div class="scroll-hint">↓</div>
+</div>
+
+<section>
+  <p class="section-label">Направления</p>
+  <p class="section-title">От Excel до инвестиционного банкинга</p>
+  <div class="topics">
+    <div class="topic"><img src="icons/excel.svg" alt="">Excel</div>
+    <div class="topic"><img src="icons/vba.svg" alt="">VBA</div>
+    <div class="topic"><img src="icons/addin.svg" alt="">Add-In</div>
+    <div class="topic"><img src="icons/german.svg" alt="">Deutsch</div>
+    <div class="topic"><img src="icons/english.svg" alt="">English</div>
+    <div class="topic"><img src="icons/japanese.svg" alt="">日本語</div>
+    <div class="topic"><img src="icons/ib.svg" alt="">Investment Banking</div>
+    <div class="topic"><img src="icons/pe.svg" alt="">Private Equity</div>
+    <div class="topic"><img src="icons/cb.svg" alt="">Commercial Banking</div>
+  </div>
+</section>
+
+<section>
+  <p class="section-label">Возможности</p>
+  <p class="section-title">Всё что нужно для эффективного обучения</p>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">↕️</div>
+      <h3>Свайп-лента</h3>
+      <p>Листай карточки как в TikTok — вверх для следующей, вниз для предыдущей</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <h3>5 уровней</h3>
+      <p>От начального до экспертного — адаптируй сложность под свой уровень</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🤖</div>
+      <h3>AI-генерация</h3>
+      <p>327+ готовых карточек + бесконечные новые через Claude API</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <h3>PWA</h3>
+      <p>Установи на телефон как приложение — работает оффлайн</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔖</div>
+      <h3>Закладки</h3>
+      <p>Сохраняй важные карточки для повторения</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⌨️</div>
+      <h3>Мультиконтроль</h3>
+      <p>Свайп, мышь, клавиатура — управляй как удобно</p>
+    </div>
+  </div>
+</section>
+
+<section style="text-align:center;padding-bottom:100px">
+  <p class="section-label">Готов?</p>
+  <p class="section-title">Начни учиться прямо сейчас</p>
+  <a href="app.html" class="cta">Открыть SwipeLearn <span class="arrow">→</span></a>
+  <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.2);font-family:'DM Mono',monospace">Бесплатно · Без регистрации · Open Source</p>
+</section>
+
+<footer>
+  <p>SwipeLearn · Made with ♡ and Claude AI</p>
+</footer>
+</body>
+</html>

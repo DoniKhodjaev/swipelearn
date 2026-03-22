@@ -1,0 +1,334 @@
+{
+ "1": [
+  {
+   "title": "Что такое надстройка",
+   "subtitle": "Введение",
+   "body": "Файл с дополнительными функциями для Excel. Типы: .xlam (VBA), .xll (C/C++), COM, Web (Office.js).",
+   "example": "Файл → Параметры → Надстройки → Перейти → выберите .xlam",
+   "tip": "Встроенные: Analysis ToolPak, Solver, Power Query, Power Pivot."
+  },
+  {
+   "title": "Analysis ToolPak",
+   "subtitle": "Статистика",
+   "body": "Набор инструментов статистического анализа: гистограммы, регрессия, ANOVA, корреляция.",
+   "example": "Данные → Анализ данных → Регрессия → укажите диапазоны X и Y",
+   "tip": "Включите через Файл → Параметры → Надстройки → Analysis ToolPak."
+  },
+  {
+   "title": "Power Query",
+   "subtitle": "Встроенная надстройка",
+   "body": "ETL-инструмент для импорта и трансформации данных. Встроен в Excel 2016+.",
+   "example": "Данные → Получить данные → Из файла/БД/веб",
+   "tip": "Все шаги сохраняются и воспроизводятся при обновлении."
+  },
+  {
+   "title": "Power Pivot",
+   "subtitle": "Встроенная надстройка",
+   "body": "Моделирование данных и DAX. Работа с миллионами строк в Excel.",
+   "example": "Power Pivot → Manage → Add Table → Create Relationship",
+   "tip": "Включите: Файл → Параметры → Надстройки → COM → Power Pivot."
+  },
+  {
+   "title": "XLAM файл",
+   "subtitle": "VBA надстройка",
+   "body": "Книга Excel с макросами, сохранённая как надстройка. UDF доступны во всех книгах.",
+   "example": "Сохраните .xlsm как .xlam → загрузите через Параметры → Надстройки",
+   "tip": "Функции из .xlam доступны как =ИмяФункции() в любой книге."
+  },
+  {
+   "title": "Solver / Поиск решения",
+   "subtitle": "Встроенная надстройка",
+   "body": "Оптимизация: находит значения переменных для достижения цели с ограничениями.",
+   "example": "Данные → Поиск решения → Цель → Переменные → Ограничения",
+   "tip": "Три метода: Simplex LP, GRG Nonlinear, Evolutionary."
+  },
+  {
+   "title": "Inquire",
+   "subtitle": "Аудит",
+   "body": "Анализ структуры книги: связи, формулы, скрытые листы, различия между версиями.",
+   "example": "Inquire → Workbook Analysis → Cell Relationships",
+   "tip": "Помогает найти циркулярные ссылки и ошибки в сложных книгах."
+  },
+  {
+   "title": "People Graph",
+   "subtitle": "Визуализация",
+   "body": "Надстройка для создания инфографики с иконками людей прямо в Excel.",
+   "example": "Вставка → People Graph → выберите данные и стиль",
+   "tip": "Для простых визуализаций — быстрее чем PowerPoint."
+  },
+  {
+   "title": "Office Store",
+   "subtitle": "Магазин надстроек",
+   "body": "Онлайн-магазин Office Add-ins. Бесплатные и платные надстройки для любых задач.",
+   "example": "Вставка → Получить надстройки → поиск по категории",
+   "tip": "Надстройки из Store работают в Excel Online и Desktop."
+  },
+  {
+   "title": "Quick Analysis (Ctrl+Q)",
+   "subtitle": "Встроенный инструмент",
+   "body": "Мини-панель для быстрого форматирования, диаграмм, итогов и спарклайнов.",
+   "example": "Выделите данные → Ctrl+Q → выберите действие",
+   "tip": "По сути мини-надстройка, встроенная в Excel."
+  },
+  {
+   "title": "Flash Fill",
+   "subtitle": "Встроенный инструмент",
+   "body": "Автоматическое распознавание паттерна из примеров. Как AI в ячейках.",
+   "example": "A1=Иванов Иван, B1=Иванов → Ctrl+E в B2",
+   "tip": "Данные → Flash Fill или Ctrl+E. Работает с любыми паттернами."
+  },
+  {
+   "title": "3D Maps / Power Map",
+   "subtitle": "Визуализация",
+   "body": "Трёхмерные карты с геоданными. Анимированные туры по данным.",
+   "example": "Вставка → 3D Map → Add Layer → выберите географические поля",
+   "tip": "Для работы нужны данные с городами, странами или координатами."
+  }
+ ],
+ "2": [
+  {
+   "title": "Создание .xlam",
+   "subtitle": "VBA Add-In",
+   "body": "Пошаговый процесс создания собственной надстройки с UDF и макросами.",
+   "example": "1. Создайте .xlsm с кодом\n2. Файл → Сохранить как → .xlam\n3. Загрузите через Надстройки",
+   "tip": "Путь по умолчанию: %AppData%\\Microsoft\\AddIns\\"
+  },
+  {
+   "title": "UDF в надстройке",
+   "subtitle": "Пользовательские функции",
+   "body": "Function в .xlam доступна как формула во всех книгах без префикса.",
+   "example": "' В модуле .xlam:\nFunction RUB(amount As Double) As String\n  RUB = Format(amount, \"#,##0.00\") & \" руб.\"\nEnd Function",
+   "tip": "Application.Volatile — чтобы UDF пересчитывалась при изменении любой ячейки."
+  },
+  {
+   "title": "Ribbon XML для Add-in",
+   "subtitle": "Интерфейс",
+   "body": "Кастомная вкладка на ленте для вашей надстройки.",
+   "example": "<customUI><ribbon><tabs>\n<tab id=\"myTab\" label=\"Моя надстройка\">\n...\n</tab></tabs></ribbon></customUI>",
+   "tip": "Используйте Custom UI Editor для редактирования XML."
+  },
+  {
+   "title": "Office.js (основы)",
+   "subtitle": "Web Add-in",
+   "body": "JavaScript API для создания кросс-платформенных надстроек Excel (Web, Windows, Mac).",
+   "example": "Excel.run(function(ctx) {\n  var range = ctx.workbook.getSelectedRange();\n  range.format.fill.color = \"yellow\";\n  return ctx.sync();\n});",
+   "tip": "Работает в Excel Online, Desktop и мобильных версиях."
+  },
+  {
+   "title": "Task Pane Add-in",
+   "subtitle": "Web Add-in",
+   "body": "Боковая панель с HTML/CSS/JS интерфейсом. Взаимодействует с книгой через Office.js.",
+   "example": "manifest.xml → SourceLocation → URL вашего HTML\nType: TaskPaneApp",
+   "tip": "Для разработки используйте Yeoman generator: yo office"
+  },
+  {
+   "title": "Content Add-in",
+   "subtitle": "Web Add-in",
+   "body": "Встраивается прямо в лист Excel как объект. Для визуализаций и интерактивных элементов.",
+   "example": "Тип: ContentApp в manifest.xml\nВставляется через Вставка → Мои надстройки",
+   "tip": "Подходит для кастомных графиков и дашбордов внутри листа."
+  },
+  {
+   "title": "XLL надстройка",
+   "subtitle": "C/C++ Add-In",
+   "body": "Компилированная DLL для Excel. Максимальная производительность для UDF.",
+   "example": "Файл .xll загружается как обычная надстройка\nФункции написаны на C/C++",
+   "tip": "Excel-DNA — фреймворк для создания XLL на C#/.NET. Проще чем чистый C."
+  },
+  {
+   "title": "COM Add-in",
+   "subtitle": ".NET Add-In",
+   "body": "Надстройка на C#/VB.NET через VSTO или COM interop. Полный доступ к .NET.",
+   "example": "[ComVisible(true)]\npublic class MyAddin : IDTExtensibility2 {\n  public void OnConnection(...) { }\n}",
+   "tip": "VSTO — Visual Studio Tools for Office. Самый удобный способ создания COM надстроек."
+  },
+  {
+   "title": "Add-in Commands",
+   "subtitle": "Web Add-in",
+   "body": "Кнопки на ленте для Web Add-in. Запускают функции или открывают Task Pane.",
+   "example": "<Action xsi:type=\"ExecuteFunction\">\n  <FunctionName>processData</FunctionName>\n</Action>",
+   "tip": "ExecuteFunction работает без UI — для быстрых фоновых операций."
+  },
+  {
+   "title": "Sideloading",
+   "subtitle": "Разработка",
+   "body": "Загрузка надстройки для тестирования без публикации в Store.",
+   "example": "Вставка → Мои надстройки → Shared Folder → загрузите manifest.xml",
+   "tip": "Для Windows: скопируйте manifest в %APPDATA%\\Microsoft\\Office\\16.0\\Wef\\"
+  },
+  {
+   "title": "Automate (Office Scripts)",
+   "subtitle": "Автоматизация",
+   "body": "TypeScript-скрипты для Excel Online. Запуск через Power Automate.",
+   "example": "function main(workbook: ExcelScript.Workbook) {\n  let sheet = workbook.getActiveWorksheet();\n}",
+   "tip": "Scripts доступны только в Excel Online с лицензией Microsoft 365."
+  }
+ ],
+ "3": [
+  {
+   "title": "Excel-DNA",
+   "subtitle": "XLL на .NET",
+   "body": "Open-source фреймворк для создания XLL надстроек на C#. Высокая производительность + удобство .NET.",
+   "example": "[ExcelFunction(Description=\"Сумма с НДС\")]\npublic static double WithVAT(double amount, double rate) {\n  return amount * (1 + rate / 100);\n}",
+   "tip": "Excel-DNA поддерживает async UDF, Ribbon, RTD серверы и Custom Task Panes."
+  },
+  {
+   "title": "VSTO Add-in",
+   "subtitle": ".NET",
+   "body": "Visual Studio Tools for Office. Полноценная .NET надстройка с доступом ко всему API Excel.",
+   "example": "public partial class ThisAddIn {\n  void ThisAddIn_Startup(object sender, EventArgs e) {\n    Globals.ThisAddIn.Application.ActiveCell.Value = \"Hello\";\n  }\n}",
+   "tip": "VSTO требует .NET Framework и работает только на Windows."
+  },
+  {
+   "title": "Custom Functions (Office.js)",
+   "subtitle": "Web UDF",
+   "body": "JavaScript UDF для Excel. Работают в Excel Online, Windows, Mac, iPad.",
+   "example": "/**\n * @customfunction\n * @param {number} amount\n * @returns {number}\n */\nfunction withVAT(amount) {\n  return amount * 1.20;\n}",
+   "tip": "JSDoc-комментарии определяют метаданные функции для Excel."
+  },
+  {
+   "title": "Streaming Functions",
+   "subtitle": "Real-time данные",
+   "body": "Custom Functions с подпиской на обновления. Для котировок, мониторинга.",
+   "example": "function stockPrice(ticker, invocation) {\n  setInterval(() => {\n    invocation.setResult(getPrice(ticker));\n  }, 1000);\n}",
+   "tip": "invocation.setResult() вызывается при каждом обновлении данных."
+  },
+  {
+   "title": "Shared Runtime",
+   "subtitle": "Архитектура",
+   "body": "Единый JavaScript runtime для Task Pane, Custom Functions и Ribbon commands.",
+   "example": "\"runtimes\": [{\n  \"requirements\": {\"sets\": [{\"name\": \"SharedRuntime\", \"minVersion\": \"1.1\"}]}\n}]",
+   "tip": "Shared Runtime позволяет Custom Functions обмениваться данными с Task Pane."
+  },
+  {
+   "title": "Auth в Web Add-in",
+   "subtitle": "Безопасность",
+   "body": "SSO с Microsoft Identity для доступа к Graph API, SharePoint, Teams из надстройки.",
+   "example": "OfficeRuntime.auth.getAccessToken()\n  .then(token => {\n    // Вызов Microsoft Graph API\n    fetch('https://graph.microsoft.com/v1.0/me', {\n      headers: {'Authorization': 'Bearer ' + token}\n    });\n  });",
+   "tip": "SSO Token можно обменять на Graph API Token через on-behalf-of flow."
+  },
+  {
+   "title": "Manifest V2 (JSON)",
+   "subtitle": "Конфигурация",
+   "body": "Новый формат манифеста Web Add-in — JSON вместо XML. Проще и современнее.",
+   "example": "{\n  \"$schema\": \"https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json\",\n  \"manifestVersion\": \"devPreview\",\n  \"extensions\": [...]\n}",
+   "tip": "JSON манифест также поддерживает публикацию в Teams и Outlook."
+  },
+  {
+   "title": "Debugging Web Add-in",
+   "subtitle": "Разработка",
+   "body": "Отладка через F12 в Windows, Safari Web Inspector на Mac.",
+   "example": "В Windows: правый клик → Inspect Element\nили devtools через --enable-debugging",
+   "tip": "Visual Studio Code + Office Add-in Debugger — лучший набор для отладки."
+  },
+  {
+   "title": "Centralized Deployment",
+   "subtitle": "Развёртывание",
+   "body": "Массовое развёртывание надстроек через Microsoft 365 admin center.",
+   "example": "Admin Center → Settings → Integrated Apps → Upload Custom App",
+   "tip": "Поддерживает назначение группам пользователей и автоматическое обновление."
+  },
+  {
+   "title": "RTD Server",
+   "subtitle": "Real-time данные",
+   "body": "COM-сервер для потоковых данных в Excel. Для торговых платформ и мониторинга.",
+   "example": "=RTD(\"MyRTDServer\";;\";USDRUB\")\n' Автоматически обновляется при новых данных",
+   "tip": "Excel-DNA упрощает создание RTD-серверов — не нужна регистрация COM."
+  }
+ ],
+ "4": [
+  {
+   "title": "Performance UDF",
+   "subtitle": "Оптимизация",
+   "body": "Array-параметры в UDF для пакетной обработки. Один вызов вместо 10000.",
+   "example": "[ExcelFunction]\npublic static object[,] BatchProcess(object[,] input) {\n  // Обработка всего массива за один вызов\n}",
+   "tip": "Массивная UDF в 100× быстрее чем та же UDF вызванная 10000 раз."
+  },
+  {
+   "title": "Custom XML Parts",
+   "subtitle": "Хранение данных",
+   "body": "Скрытое хранилище XML-данных в книге. Для настроек, метаданных, состояния.",
+   "example": "// Office.js:\nOffice.context.document.customXmlParts.addAsync(\n  '<settings><theme>dark</theme></settings>',\n  callback\n);",
+   "tip": "Данные сохраняются при Save и не видны пользователю."
+  },
+  {
+   "title": "WebSocket в Add-in",
+   "subtitle": "Real-time",
+   "body": "Подключение к WebSocket серверу для real-time обновлений данных в Excel.",
+   "example": "const ws = new WebSocket('wss://data.example.com');\nws.onmessage = (event) => {\n  Excel.run(async (ctx) => {\n    ctx.workbook.worksheets.getActiveWorksheet()\n      .getRange('A1').values = [[event.data]];\n    await ctx.sync();\n  });\n};",
+   "tip": "Комбинируйте с Streaming Custom Functions для real-time котировок."
+  },
+  {
+   "title": "Webpack + React",
+   "subtitle": "Современный стек",
+   "body": "Сборка Web Add-in с React, TypeScript, Webpack для сложных интерфейсов.",
+   "example": "npx yo office --framework react --ts true",
+   "tip": "Fluent UI React — официальная библиотека компонентов Microsoft для Office Add-ins."
+  },
+  {
+   "title": "Testing Add-ins",
+   "subtitle": "Качество",
+   "body": "Unit-тесты для Office.js с Mocha, Jest и Office Add-in Mock Library.",
+   "example": "import { OfficeMockObject } from 'office-addin-mock';\nconst mockContext = new OfficeMockObject(...);\nawait myFunction(mockContext);",
+   "tip": "E2E тестирование через Office-Addin-Scripts test runner."
+  },
+  {
+   "title": "Multi-platform Add-in",
+   "subtitle": "Кросс-платформенность",
+   "body": "Один код для Windows, Mac, Web, iPad. Проверка платформы через Office.context.platform.",
+   "example": "if (Office.context.platform === Office.PlatformType.OfficeOnline) {\n  // Web-специфичная логика\n}",
+   "tip": "Requirement Sets определяют доступные API. Проверяйте Office.context.requirements.isSetSupported()."
+  },
+  {
+   "title": "Graph API из Add-in",
+   "subtitle": "Интеграция",
+   "body": "Доступ к файлам OneDrive, Teams, календарю, почте из Excel надстройки.",
+   "example": "const response = await fetch(\n  'https://graph.microsoft.com/v1.0/me/drive/root/children',\n  { headers: { 'Authorization': `Bearer ${token}` } }\n);",
+   "tip": "Используйте @microsoft/microsoft-graph-client для типизированного доступа."
+  }
+ ],
+ "5": [
+  {
+   "title": "Архитектура Enterprise Add-in",
+   "subtitle": "Масштабирование",
+   "body": "Микросервисный бэкенд, CDN для фронтенда, Azure Functions для API. Тысячи пользователей.",
+   "example": "CDN → Task Pane HTML/JS\nAzure Functions → API endpoints\nAzure SQL → данные\nAAD → аутентификация",
+   "tip": "Кэширование на клиенте + оффлайн режим через Service Worker."
+  },
+  {
+   "title": "Native Messaging (Chrome Ext)",
+   "subtitle": "Интеграция",
+   "body": "Chrome Extension + Native Host (.exe) + Excel COM. Мост между веб-интерфейсом и Excel.",
+   "example": "// Chrome Extension:\nchrome.runtime.sendNativeMessage('com.bank.host', data);\n// Native Host (C#):\n// Получает JSON, взаимодействует с Excel через COM",
+   "tip": "Архитектура для банковских систем: iBank (веб) ↔ Native Host ↔ Excel."
+  },
+  {
+   "title": "Office Add-in + Teams",
+   "subtitle": "Платформа",
+   "body": "Одна надстройка работает в Excel, Teams, Outlook. Unified App Model.",
+   "example": "\"extensions\": [\n  {\"type\": \"excel\", ...},\n  {\"type\": \"teams\", ...},\n  {\"type\": \"outlook\", ...}\n]",
+   "tip": "JSON manifest v2 + Teams Developer Portal для публикации."
+  },
+  {
+   "title": "Custom Functions Worker",
+   "subtitle": "Производительность",
+   "body": "Custom Functions выполняются в отдельном JavaScript worker thread.",
+   "example": "// functions.js (worker thread):\nCustomFunctions.associate(\"ADD\", add);\n// taskpane.js (UI thread):\n// Отдельный контекст",
+   "tip": "Без Shared Runtime функции изолированы от UI. Общайтесь через Storage API."
+  },
+  {
+   "title": "Versioning и Updates",
+   "subtitle": "CI/CD",
+   "body": "Автоматическое обновление Web Add-in через CDN. Контроль версий manifest.",
+   "example": "GitHub Actions → build → deploy to CDN\nManifest: <Version>1.2.3</Version>\nSource: https://cdn.example.com/addin/v1.2.3/",
+   "tip": "Cache-busting через версию в URL. Users получают обновление при перезапуске Excel."
+  },
+  {
+   "title": "Telemetry",
+   "subtitle": "Мониторинг",
+   "body": "Application Insights для сбора телеметрии: ошибки, использование, производительность.",
+   "example": "appInsights.trackEvent({\n  name: 'FunctionCalled',\n  properties: { functionName: 'processData' }\n});",
+   "tip": "Отслеживайте самые используемые функции для приоритизации разработки."
+  }
+ ]
+}

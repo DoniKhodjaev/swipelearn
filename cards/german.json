@@ -1,0 +1,369 @@
+{
+ "1": [
+  {
+   "title": "Hallo / Guten Tag",
+   "subtitle": "Приветствия",
+   "body": "Основные приветствия. Hallo — неформально, Guten Tag — формально (добрый день).",
+   "example": "Hallo! Wie geht es Ihnen? — Здравствуйте! Как у вас дела?",
+   "tip": "Guten Morgen (утро), Guten Tag (день), Guten Abend (вечер)."
+  },
+  {
+   "title": "der, die, das",
+   "subtitle": "Артикли",
+   "body": "Три рода в немецком: мужской (der), женский (die), средний (das). Артикль нужно учить с каждым словом.",
+   "example": "der Mann (мужчина), die Frau (женщина), das Kind (ребёнок)",
+   "tip": "Слова на -ung, -keit, -heit всегда женские (die). На -chen, -lein — средние (das)."
+  },
+  {
+   "title": "Ich bin / Du bist",
+   "subtitle": "Глагол sein (быть)",
+   "body": "Спряжение sein: ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind.",
+   "example": "Ich bin Student. — Я студент.\nSie ist Ärztin. — Она врач.",
+   "tip": "В немецком нельзя опустить 'быть': Ich bin müde (я есть уставший)."
+  },
+  {
+   "title": "Zahlen 1-20",
+   "subtitle": "Числительные",
+   "body": "eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf, dreizehn...zwanzig.",
+   "example": "Ich habe drei Kinder. — У меня трое детей.",
+   "tip": "13-19 образуются как drei+zehn. 21-99: единицы+und+десятки: einundzwanzig (21)."
+  },
+  {
+   "title": "Possessivpronomen",
+   "subtitle": "Притяжательные",
+   "body": "mein (мой), dein (твой), sein (его), ihr (её), unser (наш), euer (ваш), ihr (их).",
+   "example": "Mein Name ist... — Моё имя...\nDas ist meine Schwester. — Это моя сестра.",
+   "tip": "Окончания как у неопределённого артикля: mein Bruder, meine Schwester, mein Kind."
+  },
+  {
+   "title": "Wie heißt du?",
+   "subtitle": "Знакомство",
+   "body": "Как тебя зовут? Формально: Wie heißen Sie? Ответ: Ich heiße...",
+   "example": "Wie heißen Sie? — Ich heiße Anna Schmidt.",
+   "tip": "heißen = называться. Буквально: 'Как вы называетесь?' — 'Я называюсь...'"
+  },
+  {
+   "title": "Nicht / Kein",
+   "subtitle": "Отрицание",
+   "body": "nicht отрицает глагол/прилагательное. kein — отрицает существительное с неопределённым артиклем.",
+   "example": "Das ist nicht gut. — Это нехорошо.\nIch habe kein Auto. — У меня нет машины.",
+   "tip": "kein склоняется как ein: keinen (Akk.m), keine (f), kein (n), keine (pl)."
+  },
+  {
+   "title": "Wochentage",
+   "subtitle": "Дни недели",
+   "body": "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag. Все мужского рода.",
+   "example": "Am Montag arbeite ich. — В понедельник я работаю.",
+   "tip": "am + день = в (какой день). Все дни на -tag, кроме Mittwoch (середина недели)."
+  },
+  {
+   "title": "haben (иметь)",
+   "subtitle": "Базовые глаголы",
+   "body": "ich habe, du hast, er hat, wir haben, ihr habt, sie haben.",
+   "example": "Ich habe einen Bruder. — У меня есть брат.\nHast du Zeit? — У тебя есть время?",
+   "tip": "haben + Akk: einen Bruder (муж.р в Akkusativ), eine Schwester (жен.р)."
+  },
+  {
+   "title": "Wo? Wohin? Woher?",
+   "subtitle": "Вопросительные слова",
+   "body": "Wo — где? Wohin — куда? Woher — откуда? Was — что? Wer — кто? Wann — когда?",
+   "example": "Wo wohnst du? — Где ты живёшь?\nWoher kommen Sie? — Откуда вы?",
+   "tip": "Wohin + Akkusativ (движение куда). Wo + Dativ (местонахождение где)."
+  },
+  {
+   "title": "Farben",
+   "subtitle": "Цвета",
+   "body": "rot (красный), blau (синий), grün (зелёный), gelb (жёлтый), schwarz (чёрный), weiß (белый).",
+   "example": "Das Auto ist rot. — Машина красная.",
+   "tip": "Цвета как прилагательные склоняются: ein rotes Auto, die rote Tasche."
+  },
+  {
+   "title": "Konjugation -en",
+   "subtitle": "Спряжение глаголов",
+   "body": "Большинство глаголов: -e, -st, -t, -en, -t, -en. Основа + окончание.",
+   "example": "machen: ich mache, du machst, er macht, wir machen",
+   "tip": "Если основа на -t/-d, добавляется -e: arbeiten → du arbeitest, er arbeitet."
+  },
+  {
+   "title": "Akkusativ",
+   "subtitle": "Падежи",
+   "body": "Винительный падеж: прямое дополнение. Только мужской род меняется: der→den, ein→einen.",
+   "example": "Ich sehe den Mann. — Я вижу мужчину.\nIch kaufe einen Computer.",
+   "tip": "Женский, средний и множественное в Akkusativ = Nominativ. Меняется только мужской!"
+  }
+ ],
+ "2": [
+  {
+   "title": "Dativ",
+   "subtitle": "Падежи",
+   "body": "Дательный падеж: кому/чему. der→dem, die→der, das→dem, die(pl)→den+n.",
+   "example": "Ich gebe dem Mann das Buch. — Я даю мужчине книгу.",
+   "tip": "Предлоги с Dativ: mit, nach, bei, seit, von, zu, aus, gegenüber."
+  },
+  {
+   "title": "Modalverben",
+   "subtitle": "Модальные глаголы",
+   "body": "können (мочь), müssen (должен), wollen (хотеть), sollen (следует), dürfen (разрешено), mögen (нравится).",
+   "example": "Ich kann Deutsch sprechen. — Я могу говорить по-немецки.\nDu musst arbeiten. — Ты должен работать.",
+   "tip": "Модальный глагол спрягается, основной — в Infinitiv в конце: Ich will nach Hause gehen."
+  },
+  {
+   "title": "Perfekt",
+   "subtitle": "Прошедшее время",
+   "body": "Разговорное прошедшее: haben/sein + Partizip II. Самое частое прошедшее в речи.",
+   "example": "Ich habe gegessen. — Я поел.\nEr ist gekommen. — Он пришёл.",
+   "tip": "sein используется с глаголами движения/изменения: gehen, kommen, fahren, werden."
+  },
+  {
+   "title": "Trennbare Verben",
+   "subtitle": "Отделяемые приставки",
+   "body": "Приставки an-, auf-, ein-, mit-, zu- и др. отделяются и идут в конец предложения.",
+   "example": "aufstehen: Ich stehe um 7 Uhr auf. — Я встаю в 7 часов.\nanrufen: Ich rufe dich an. — Я тебе позвоню.",
+   "tip": "В Perfekt: aufgestanden, angerufen. Приставка + ge + основа."
+  },
+  {
+   "title": "Wechselpräpositionen",
+   "subtitle": "Предлоги",
+   "body": "9 предлогов с Akk (куда?) или Dat (где?): in, an, auf, über, unter, vor, hinter, neben, zwischen.",
+   "example": "Ich gehe in die Schule. (Akk — куда)\nIch bin in der Schule. (Dat — где)",
+   "tip": "Движение → Akkusativ. Местонахождение → Dativ."
+  },
+  {
+   "title": "Komparativ / Superlativ",
+   "subtitle": "Степени сравнения",
+   "body": "Komparativ: +er (schneller). Superlativ: am +sten (am schnellsten).",
+   "example": "Berlin ist größer als München. — Берлин больше Мюнхена.\nDas ist am besten. — Это лучше всего.",
+   "tip": "Неправильные: gut-besser-am besten, viel-mehr-am meisten, gern-lieber-am liebsten."
+  },
+  {
+   "title": "Nebensatz (dass, weil, wenn)",
+   "subtitle": "Придаточные предложения",
+   "body": "После союзов dass, weil, wenn, ob, als, während глагол идёт в конец.",
+   "example": "Ich denke, dass er recht hat. — Я думаю, что он прав.\nWeil es regnet, bleibe ich. — Потому что идёт дождь, я остаюсь.",
+   "tip": "В главном предложении после Nebensatz — обратный порядок: Weil..., gehe ICH..."
+  },
+  {
+   "title": "Reflexive Verben",
+   "subtitle": "Возвратные глаголы",
+   "body": "Глаголы с sich: sich waschen (мыться), sich freuen (радоваться), sich erinnern (помнить).",
+   "example": "Ich wasche mich. — Я моюсь.\nEr freut sich. — Он радуется.",
+   "tip": "Возвратное местоимение: mich/mir, dich/dir, sich, uns, euch, sich."
+  },
+  {
+   "title": "Präteritum (haben/sein)",
+   "subtitle": "Прошедшее время",
+   "body": "Простое прошедшее. В разговоре обычно только для haben (hatte) и sein (war).",
+   "example": "Ich war in Berlin. — Я был в Берлине.\nIch hatte keine Zeit. — У меня не было времени.",
+   "tip": "Для остальных глаголов Präteritum используется в письменной речи и литературе."
+  },
+  {
+   "title": "Essen und Trinken",
+   "subtitle": "Еда и напитки",
+   "body": "das Brot (хлеб), der Käse (сыр), das Fleisch (мясо), der Kaffee (кофе), das Wasser (вода).",
+   "example": "Ich möchte einen Kaffee, bitte. — Мне, пожалуйста, кофе.",
+   "tip": "В ресторане: Die Rechnung, bitte! — Счёт, пожалуйста!"
+  },
+  {
+   "title": "Konjunktiv II (würde)",
+   "subtitle": "Сослагательное",
+   "body": "Вежливые просьбы и нереальные условия. würde + Infinitiv.",
+   "example": "Ich würde gern bestellen. — Я бы хотел заказать.\nWenn ich reich wäre... — Если бы я был богат...",
+   "tip": "Самые частые формы: wäre (был бы), hätte (имел бы), könnte (мог бы), müsste (должен бы)."
+  },
+  {
+   "title": "Genus-Regeln",
+   "subtitle": "Род существительных",
+   "body": "Правила определения рода: -ung/-keit/-heit → die. -chen/-lein → das. -er/-ling → часто der.",
+   "example": "die Zeitung (газета), das Mädchen (девочка — das!), der Computer",
+   "tip": "Заимствования из англ. часто мужские: der Computer, der Manager, der Job."
+  }
+ ],
+ "3": [
+  {
+   "title": "Relativsätze",
+   "subtitle": "Относительные придаточные",
+   "body": "Определительные предложения с der/die/das (который). Глагол в конце.",
+   "example": "Der Mann, der dort steht, ist mein Chef. — Мужчина, который там стоит — мой шеф.",
+   "tip": "Род и число определяются по существительному, падеж — по роли в придаточном."
+  },
+  {
+   "title": "Passiv",
+   "subtitle": "Страдательный залог",
+   "body": "werden + Partizip II. Действие важнее исполнителя.",
+   "example": "Das Haus wird gebaut. — Дом строится.\nDer Brief wurde geschrieben. — Письмо было написано.",
+   "tip": "von + Dat для агента: Das Haus wird von der Firma gebaut."
+  },
+  {
+   "title": "Adjektivdeklination",
+   "subtitle": "Склонение прилагательных",
+   "body": "Три типа склонения: после der-слов, nach ein-слов, и без артикля. Зависит от рода/падежа.",
+   "example": "der große Mann (Nom), den großen Mann (Akk)\nein großer Mann (Nom), einen großen Mann (Akk)",
+   "tip": "Если артикль показывает род — прилагательное на -e(n). Если нет — прилагательное берёт окончание артикля."
+  },
+  {
+   "title": "Genitiv",
+   "subtitle": "Падежи",
+   "body": "Родительный падеж: чей? des Mannes, der Frau, des Kindes. В разговоре заменяется на von + Dat.",
+   "example": "Das Auto des Chefs. — Машина шефа.\nDie Meinung der Experten. — Мнение экспертов.",
+   "tip": "Предлоги с Genitiv: wegen, trotz, während, statt, innerhalb, außerhalb."
+  },
+  {
+   "title": "Infinitiv mit zu",
+   "subtitle": "Конструкции",
+   "body": "Инфинитивные обороты: um...zu (чтобы), ohne...zu (не делая), statt...zu (вместо того чтобы).",
+   "example": "Ich lerne Deutsch, um in Deutschland zu arbeiten. — Я учу немецкий, чтобы работать в Германии.",
+   "tip": "После начинать, пытаться и т.п.: Ich versuche, pünktlich zu kommen."
+  },
+  {
+   "title": "Geschäftssprache",
+   "subtitle": "Деловой немецкий",
+   "body": "die Rechnung (счёт), die Bestellung (заказ), der Vertrag (договор), die Besprechung (совещание).",
+   "example": "Ich möchte einen Termin vereinbaren. — Я хотел бы назначить встречу.",
+   "tip": "Очень geehrte Damen und Herren — Уважаемые дамы и господа (формальное обращение)."
+  },
+  {
+   "title": "Konjunktiv I",
+   "subtitle": "Косвенная речь",
+   "body": "Используется в косвенной речи, особенно в прессе и юридических текстах.",
+   "example": "Er sagte, er sei krank. — Он сказал, что болен.",
+   "tip": "er sei (быть), er habe (иметь), er könne (мочь). В разговоре — заменяется Konjunktiv II."
+  },
+  {
+   "title": "N-Deklination",
+   "subtitle": "Особое склонение",
+   "body": "Слабое склонение: -n/-en во всех падежах кроме Nom. Sg. Для определённых мужских существительных.",
+   "example": "der Kunde → den/dem/des Kunden\nder Herr → den/dem Herrn, des Herrn",
+   "tip": "Типичные слова: Kunde, Kollege, Junge, Herr, Mensch, Nachbar."
+  },
+  {
+   "title": "Plusquamperfekt",
+   "subtitle": "Давнопрошедшее",
+   "body": "Действие до другого прошедшего: hatte/war + Partizip II.",
+   "example": "Nachdem ich gegessen hatte, ging ich spazieren. — После того как я поел, я пошёл гулять.",
+   "tip": "Часто с nachdem (после того как), bevor (перед тем как)."
+  },
+  {
+   "title": "Finanzwortschatz",
+   "subtitle": "Финансовая лексика",
+   "body": "die Bank, das Konto (счёт), die Überweisung (перевод), der Kredit, die Zinsen (проценты), der Wechselkurs.",
+   "example": "Ich möchte Geld überweisen. — Я хотел бы перевести деньги.",
+   "tip": "das Girokonto — расчётный счёт, das Sparkonto — сберегательный, die Kreditkarte — кредитная карта."
+  }
+ ],
+ "4": [
+  {
+   "title": "Partizipialattribute",
+   "subtitle": "Причастные обороты",
+   "body": "Длинные определения перед существительным. Характерны для научного и делового стиля.",
+   "example": "die im letzten Quartal erzielten Ergebnisse — результаты, достигнутые в прошлом квартале",
+   "tip": "Причастие склоняется как прилагательное и стоит прямо перед существительным."
+  },
+  {
+   "title": "Nominalstil",
+   "subtitle": "Книжный стиль",
+   "body": "Замена глаголов на отглагольные существительные. Типично для делового/юридического немецкого.",
+   "example": "Die Durchführung der Prüfung... вместо Die Prüfung wird durchgeführt...",
+   "tip": "Суффиксы: -ung (Durchführung), -keit (Möglichkeit), -heit (Sicherheit)."
+  },
+  {
+   "title": "Zweiteilige Konnektoren",
+   "subtitle": "Парные союзы",
+   "body": "sowohl...als auch (как...так и), weder...noch (ни...ни), entweder...oder (либо...либо), je...desto (чем...тем).",
+   "example": "Je mehr ich lerne, desto besser verstehe ich. — Чем больше учу, тем лучше понимаю.",
+   "tip": "zwar...aber (хотя...но): Er ist zwar jung, aber sehr erfahren."
+  },
+  {
+   "title": "Indirekte Rede",
+   "subtitle": "Косвенная речь",
+   "body": "Полная система с Konjunktiv I/II. Для точной передачи чужих слов без подтверждения.",
+   "example": "Der Minister sagte, die Wirtschaft wachse. — Министр сказал, что экономика растёт (якобы).",
+   "tip": "В прессе: Konjunktiv I сигнализирует, что журналист передаёт, а не подтверждает информацию."
+  },
+  {
+   "title": "Funktionsverbgefüge",
+   "subtitle": "Устойчивые сочетания",
+   "body": "Функциональные глагольные конструкции: eine Entscheidung treffen (принять решение), in Betracht ziehen (рассмотреть).",
+   "example": "Wir müssen Maßnahmen ergreifen. — Мы должны принять меры.",
+   "tip": "zur Verfügung stehen (быть в распоряжении), in Anspruch nehmen (воспользоваться)."
+  },
+  {
+   "title": "Bankdeutsch",
+   "subtitle": "Банковский немецкий",
+   "body": "die Bilanz (баланс), der Umsatz (оборот), die Gewinn- und Verlustrechnung (P&L), der Jahresabschluss.",
+   "example": "Der Nettogewinn stieg um 15 Prozent. — Чистая прибыль выросла на 15%.",
+   "tip": "die Eigenkapitalrendite (ROE), die Kapitalerhöhung (увеличение капитала), die Dividende."
+  },
+  {
+   "title": "Erweiterte Partizipien",
+   "subtitle": "Сложные причастия",
+   "body": "Расширенные причастные определения — до 10-15 слов перед существительным.",
+   "example": "der von der Europäischen Zentralbank festgelegte Leitzins — ключевая ставка, установленная ЕЦБ",
+   "tip": "Читайте справа налево: найдите существительное, потом причастие, потом всё остальное."
+  },
+  {
+   "title": "Verhandlungsdeutsch",
+   "subtitle": "Язык переговоров",
+   "body": "Фразы для деловых переговоров и презентаций на немецком.",
+   "example": "Ich schlage vor, dass... — Я предлагаю, чтобы...\nKönnten wir uns auf... einigen? — Могли бы мы договориться о...?",
+   "tip": "Einverstanden! — Согласен! Das kommt nicht in Frage. — Это исключено."
+  },
+  {
+   "title": "Textkonnektoren",
+   "subtitle": "Связующие слова",
+   "body": "Логические связки: folglich (следовательно), dennoch (тем не менее), hingegen (напротив), demzufolge (вследствие).",
+   "example": "Die Kosten stiegen; folglich mussten wir die Preise erhöhen.",
+   "tip": "Позиция в предложении: folglich, dennoch, jedoch — на 1-м месте с инверсией."
+  }
+ ],
+ "5": [
+  {
+   "title": "Wissenschaftssprache",
+   "subtitle": "Академический стиль",
+   "body": "Стиль научных и аналитических текстов: пассив, Nominalstil, сложные предложения.",
+   "example": "Die vorliegende Untersuchung befasst sich mit... — Данное исследование посвящено...",
+   "tip": "Es sei darauf hingewiesen, dass... — Следует указать на то, что... (Konjunktiv I)."
+  },
+  {
+   "title": "Redewendungen",
+   "subtitle": "Идиомы",
+   "body": "Устойчивые выражения для продвинутого уровня.",
+   "example": "den Nagel auf den Kopf treffen — попасть в точку\nüber den Tellerrand schauen — мыслить шире",
+   "tip": "Schwein haben — повезти (иметь свинью). Типично немецкая идиома."
+  },
+  {
+   "title": "Rechtssprache",
+   "subtitle": "Юридический немецкий",
+   "body": "Язык договоров и законов: der Vertrag (договор), die Klausel (статья), der Gerichtsstand (подсудность).",
+   "example": "Gemäß § 433 BGB... — Согласно параграфу 433 ГГУ (Гражданского кодекса)...",
+   "tip": "BGB = Bürgerliches Gesetzbuch (Гражданский кодекс), HGB = Handelsgesetzbuch (Торговый кодекс)."
+  },
+  {
+   "title": "Wirtschaftsnachrichten",
+   "subtitle": "Экономические новости",
+   "body": "Понимание Handelsblatt, FAZ: die Konjunktur (экономика), der Aufschwung (подъём), die Rezession.",
+   "example": "Die Inflationsrate lag bei 2,3 Prozent. — Уровень инфляции составил 2,3%.",
+   "tip": "die Leitzinserhöhung — повышение ключевой ставки, der Handelsüberschuss — торговый профицит."
+  },
+  {
+   "title": "Modalpartikeln",
+   "subtitle": "Модальные частицы",
+   "body": "ja, doch, mal, halt, eben, schon, wohl — придают оттенок. Характерны для устной речи.",
+   "example": "Das ist ja toll! — Это ведь здорово!\nKannst du mir mal helfen? — Не мог бы ты мне помочь?",
+   "tip": "doch усиливает утверждение: Komm doch! — Ну приходи же!"
+  },
+  {
+   "title": "Diplomatische Sprache",
+   "subtitle": "Дипломатический стиль",
+   "body": "Очень вежливые конструкции для высокого делового общения.",
+   "example": "Ich würde mir erlauben, darauf hinzuweisen, dass... — Я позволю себе обратить внимание на то, что...",
+   "tip": "Dürfte ich Sie bitten... — Могу ли я попросить Вас... (максимальная вежливость)."
+  },
+  {
+   "title": "Fachsprache Finanzen",
+   "subtitle": "Профессиональный финансовый",
+   "body": "die Eigenkapitalquote (коэффициент собственного капитала), die Risikovorsorge (резервы на потери), der Deckungsgrad.",
+   "example": "Die Bank hat ihre Risikovorsorge um 30% erhöht. — Банк увеличил резервы на 30%.",
+   "tip": "der Stresstest, die Kapitaladäquanz (достаточность капитала), die Liquiditätsdeckungsquote (LCR)."
+  }
+ ]
+}

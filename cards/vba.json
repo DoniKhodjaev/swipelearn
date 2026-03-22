@@ -1,0 +1,418 @@
+{
+ "1": [
+  {
+   "title": "Что такое VBA",
+   "subtitle": "Введение",
+   "body": "Visual Basic for Applications — встроенный язык программирования Excel для автоматизации задач.",
+   "example": "Alt+F11 — открыть редактор VBA",
+   "tip": "VBA доступен во всех приложениях Office: Excel, Word, Access, Outlook."
+  },
+  {
+   "title": "Макрорекордер",
+   "subtitle": "Первый макрос",
+   "body": "Записывает ваши действия в Excel как VBA-код. Лучший способ начать изучение.",
+   "example": "Вид → Макросы → Запись макроса → выполните действия → Остановить",
+   "tip": "Записанный код неоптимален, но отлично показывает объекты и методы."
+  },
+  {
+   "title": "Sub и End Sub",
+   "subtitle": "Структура кода",
+   "body": "Sub — начало процедуры (макроса). End Sub — конец. Всё между — действия.",
+   "example": "Sub Привет()\n  MsgBox \"Привет, мир!\"\nEnd Sub",
+   "tip": "Имя макроса не может содержать пробелы. Используйте CamelCase."
+  },
+  {
+   "title": "MsgBox",
+   "subtitle": "Диалоги",
+   "body": "Выводит окно с сообщением. Может содержать кнопки OK, Да/Нет, Отмена.",
+   "example": "MsgBox \"Готово!\", vbInformation, \"Результат\"",
+   "tip": "vbYesNo добавит кнопки Да/Нет. Ответ можно проверить: If MsgBox(...) = vbYes Then"
+  },
+  {
+   "title": "Переменные Dim",
+   "subtitle": "Основы языка",
+   "body": "Dim объявляет переменную. Типы: String (текст), Long (число), Double (дробное), Boolean.",
+   "example": "Dim name As String\nname = \"Иванов\"\nDim total As Long\ntotal = 100",
+   "tip": "Всегда объявляйте переменные. Option Explicit вверху модуля заставит это делать."
+  },
+  {
+   "title": "Range и Cells",
+   "subtitle": "Работа с ячейками",
+   "body": "Range(\"A1\") — ссылка на ячейку. Cells(1,1) — по номерам строки и столбца.",
+   "example": "Range(\"A1\").Value = \"Привет\"\nCells(2, 3).Value = 100",
+   "tip": "Range(\"A1:B10\") — диапазон. Cells удобнее в циклах: Cells(i, j)."
+  },
+  {
+   "title": "Запуск макроса",
+   "subtitle": "Выполнение",
+   "body": "Alt+F8 — список макросов. Можно назначить кнопку на панели или горячую клавишу.",
+   "example": "Alt+F8 → выберите макрос → Выполнить",
+   "tip": "Разработчик → Вставить → Кнопка → назначьте макрос."
+  },
+  {
+   "title": "Комментарии (')",
+   "subtitle": "Основы языка",
+   "body": "Строка после апострофа — комментарий, не выполняется. Документируйте код.",
+   "example": "' Это комментарий\nDim x As Long ' переменная для счётчика",
+   "tip": "Выделите блок → Ctrl+G → Edit → Comment Block — закомментировать всё."
+  },
+  {
+   "title": "With...End With",
+   "subtitle": "Оптимизация",
+   "body": "Группирует операции с одним объектом. Сокращает код и ускоряет.",
+   "example": "With Range(\"A1\")\n  .Value = 100\n  .Font.Bold = True\n  .Interior.Color = vbYellow\nEnd With",
+   "tip": "Точка в начале строки внутри With обращается к указанному объекту."
+  },
+  {
+   "title": "ActiveSheet и ActiveWorkbook",
+   "subtitle": "Объекты",
+   "body": "Ссылки на текущий лист и книгу. Удобно, но может приводить к ошибкам.",
+   "example": "ActiveSheet.Name = \"Отчёт\"\nActiveWorkbook.Save",
+   "tip": "Лучше использовать ThisWorkbook и Worksheets(\"Имя\") для надёжности."
+  },
+  {
+   "title": "Сохранение .xlsm",
+   "subtitle": "Файлы",
+   "body": "Файл с макросами нужно сохранять как .xlsm (с поддержкой макросов).",
+   "example": "Файл → Сохранить как → Книга Excel с поддержкой макросов (.xlsm)",
+   "tip": ".xlsx НЕ сохраняет макросы. При сохранении в .xlsx код будет потерян!"
+  },
+  {
+   "title": "InputBox",
+   "subtitle": "Ввод данных",
+   "body": "Окно для ввода данных пользователем. Возвращает строку.",
+   "example": "Dim name As String\nname = InputBox(\"Введите имя:\")",
+   "tip": "Application.InputBox с Type:=8 позволяет выбрать диапазон мышью."
+  },
+  {
+   "title": "Debug.Print",
+   "subtitle": "Отладка",
+   "body": "Выводит значение в окно Immediate (Ctrl+G). Основа отладки.",
+   "example": "Debug.Print \"x = \" & x\nDebug.Print Range(\"A1\").Value",
+   "tip": "Ctrl+G — окно Immediate. Можно вводить команды прямо в нём: ? 2+2"
+  }
+ ],
+ "2": [
+  {
+   "title": "Цикл For...Next",
+   "subtitle": "Циклы",
+   "body": "Повторяет действие заданное число раз. Счётчик увеличивается автоматически.",
+   "example": "Dim i As Long\nFor i = 1 To 100\n  Cells(i, 1).Value = i\nNext i",
+   "tip": "Step -1 — обратный отсчёт. Обязателен при удалении строк снизу вверх!"
+  },
+  {
+   "title": "Цикл For Each",
+   "subtitle": "Циклы",
+   "body": "Перебирает каждый элемент коллекции: ячейки, листы, файлы.",
+   "example": "Dim cell As Range\nFor Each cell In Range(\"A1:A10\")\n  cell.Value = UCase(cell.Value)\nNext cell",
+   "tip": "For Each быстрее For при работе с Range."
+  },
+  {
+   "title": "If...Then...Else",
+   "subtitle": "Условия",
+   "body": "Выполняет код по условию. ElseIf для дополнительных проверок.",
+   "example": "If x > 100 Then\n  MsgBox \"Много\"\nElseIf x > 50 Then\n  MsgBox \"Средне\"\nElse\n  MsgBox \"Мало\"\nEnd If",
+   "tip": "Однострочный вариант: If x > 0 Then y = x (без End If)."
+  },
+  {
+   "title": "Select Case",
+   "subtitle": "Условия",
+   "body": "Множественный выбор — чище вложенных If. Как SWITCH в других языках.",
+   "example": "Select Case month\n  Case 1 To 3: MsgBox \"Q1\"\n  Case 4 To 6: MsgBox \"Q2\"\n  Case Else: MsgBox \"H2\"\nEnd Select",
+   "tip": "Case Is > 100 — для сравнений. Case \"A\", \"B\" — несколько значений."
+  },
+  {
+   "title": "Worksheets и Sheets",
+   "subtitle": "Объекты Excel",
+   "body": "Обращение к листам по имени или индексу. Worksheets — только листы, Sheets — включая диаграммы.",
+   "example": "Worksheets(\"Данные\").Range(\"A1\").Value = 1\nWorksheets.Add After:=ActiveSheet",
+   "tip": "Sheets.Count — количество листов. Worksheets(\"Лист1\").Visible = xlSheetHidden — скрыть."
+  },
+  {
+   "title": "Workbooks.Open",
+   "subtitle": "Работа с файлами",
+   "body": "Открывает другую книгу Excel. Возвращает объект Workbook.",
+   "example": "Dim wb As Workbook\nSet wb = Workbooks.Open(\"C:\\data.xlsx\")\nwb.Close SaveChanges:=False",
+   "tip": "Application.GetOpenFilename — диалог выбора файла."
+  },
+  {
+   "title": "Строковые функции",
+   "subtitle": "Работа с текстом",
+   "body": "Left, Right, Mid, Len, InStr, Replace, Trim — аналоги функций Excel.",
+   "example": "Dim s As String: s = \"Привет мир\"\nLeft(s, 6)  ' Привет\nInStr(s, \"мир\")  ' 8",
+   "tip": "Split(s, \" \") — разбивает строку в массив по разделителю."
+  },
+  {
+   "title": "Application.ScreenUpdating",
+   "subtitle": "Оптимизация",
+   "body": "Отключение обновления экрана ускоряет макрос в 5-50 раз.",
+   "example": "Application.ScreenUpdating = False\n' ... код ...\nApplication.ScreenUpdating = True",
+   "tip": "Также отключайте Calculation и Events для максимальной скорости."
+  },
+  {
+   "title": "Массивы",
+   "subtitle": "Структуры данных",
+   "body": "Хранят множество значений в одной переменной. Фиксированные и динамические.",
+   "example": "Dim arr(1 To 5) As Long\narr(1) = 10\n\nDim dyn() As String\nReDim dyn(1 To n)",
+   "tip": "Массивы в 100-1000× быстрее чем чтение из ячеек в цикле."
+  },
+  {
+   "title": "On Error",
+   "subtitle": "Обработка ошибок",
+   "body": "Управление ошибками: Resume Next (пропустить), GoTo (перейти к обработчику).",
+   "example": "On Error Resume Next\n' код который может упасть\nIf Err.Number <> 0 Then\n  MsgBox Err.Description\nEnd If",
+   "tip": "On Error GoTo 0 — сброс обработки. Всегда сбрасывайте после блока."
+  },
+  {
+   "title": "Do While / Do Until",
+   "subtitle": "Циклы",
+   "body": "Цикл с условием. While — пока истина, Until — пока ложь.",
+   "example": "Dim i As Long: i = 1\nDo While Cells(i, 1).Value <> \"\"\n  i = i + 1\nLoop",
+   "tip": "Осторожно с бесконечными циклами! Ctrl+Break — принудительная остановка."
+  },
+  {
+   "title": "Format()",
+   "subtitle": "Форматирование",
+   "body": "Форматирует число или дату в строку по шаблону.",
+   "example": "Format(12345.6, \"#,##0.00\") ' 12,345.60\nFormat(Now, \"dd.mm.yyyy\") ' 22.03.2026",
+   "tip": "Format(0.15, \"0%\") → 15%. Совпадает с форматами ячеек Excel."
+  },
+  {
+   "title": "Timer",
+   "subtitle": "Измерение времени",
+   "body": "Возвращает секунды от полуночи. Используйте для замера производительности.",
+   "example": "Dim t As Double: t = Timer\n' ... код ...\nDebug.Print Timer - t & \" сек\"",
+   "tip": "Сравнивайте время до и после оптимизации — видно в числах."
+  }
+ ],
+ "3": [
+  {
+   "title": "Работа с массивами из Range",
+   "subtitle": "Производительность",
+   "body": "Чтение диапазона в массив и запись обратно — в 100× быстрее поячеечного доступа.",
+   "example": "Dim arr As Variant\narr = Range(\"A1:D1000\").Value\n' обработка arr(строка, столбец)\nRange(\"A1:D1000\").Value = arr",
+   "tip": "Индексы массива из Range начинаются с 1, не с 0."
+  },
+  {
+   "title": "Dictionary",
+   "subtitle": "Структуры данных",
+   "body": "Хеш-таблица ключ→значение. Быстрый поиск, проверка существования, уникальные значения.",
+   "example": "Dim d As Object\nSet d = CreateObject(\"Scripting.Dictionary\")\nd.Add \"key1\", \"value1\"\nIf d.Exists(\"key1\") Then ...",
+   "tip": "d.Keys — массив ключей, d.Items — массив значений. Идеально для удаления дубликатов."
+  },
+  {
+   "title": "UserForm",
+   "subtitle": "Интерфейс",
+   "body": "Пользовательская форма с полями, кнопками, списками. Insert → UserForm в VBE.",
+   "example": "' В модуле формы:\nPrivate Sub btnOK_Click()\n  Range(\"A1\").Value = txtName.Value\n  Unload Me\nEnd Sub",
+   "tip": "Me.Hide вместо Unload Me если нужно прочитать значения после закрытия формы."
+  },
+  {
+   "title": "Events (события)",
+   "subtitle": "Автоматизация",
+   "body": "Код, выполняющийся при событиях: открытие книги, изменение ячейки, активация листа.",
+   "example": "' В модуле листа:\nPrivate Sub Worksheet_Change(ByVal Target As Range)\n  If Not Intersect(Target, Range(\"A:A\")) Is Nothing Then\n    MsgBox \"Столбец A изменён\"\n  End If\nEnd Sub",
+   "tip": "Application.EnableEvents = False — временно отключить события (важно чтобы не зациклить)."
+  },
+  {
+   "title": "Class Module",
+   "subtitle": "ООП",
+   "body": "Создание собственных объектов с свойствами и методами.",
+   "example": "' Класс clsClient:\nPublic Name As String\nPublic INN As String\nPublic Function FullInfo() As String\n  FullInfo = Name & \" (\" & INN & \")\"\nEnd Function",
+   "tip": "Коллекция объектов класса = мощная замена массивам структур."
+  },
+  {
+   "title": "FileSystemObject",
+   "subtitle": "Файловая система",
+   "body": "Объект для работы с файлами и папками: создание, копирование, проверка существования.",
+   "example": "Dim fso As Object\nSet fso = CreateObject(\"Scripting.FileSystemObject\")\nIf fso.FileExists(path) Then ...",
+   "tip": "fso.GetFolder(path).Files — перебор всех файлов в папке."
+  },
+  {
+   "title": "ADO: подключение к БД",
+   "subtitle": "Базы данных",
+   "body": "Чтение и запись данных из SQL Server, Access, других БД через ADO.",
+   "example": "Dim cn As Object\nSet cn = CreateObject(\"ADODB.Connection\")\ncn.Open connString\nDim rs As Object\nSet rs = cn.Execute(sql)",
+   "tip": "Recordset.GetRows — загружает результат в массив. Быстрее поячеечной записи."
+  },
+  {
+   "title": "Регулярные выражения",
+   "subtitle": "Работа с текстом",
+   "body": "RegExp для поиска и замены по паттерну. Мощнее Like и InStr.",
+   "example": "Dim re As Object\nSet re = CreateObject(\"VBScript.RegExp\")\nre.Pattern = \"\\d{10}\"\nIf re.Test(text) Then ...",
+   "tip": "re.Global = True для поиска всех совпадений, не только первого."
+  },
+  {
+   "title": "Application.Run",
+   "subtitle": "Динамический вызов",
+   "body": "Вызов макроса по имени (строке). Полезно для динамических сценариев.",
+   "example": "Dim macroName As String\nmacroName = \"ProcessData\"\nApplication.Run macroName",
+   "tip": "Работает между книгами: Application.Run \"'Книга.xlsm'!Макрос\""
+  },
+  {
+   "title": "Ribbon (XML)",
+   "subtitle": "Интерфейс",
+   "body": "Кастомизация ленты Excel через XML. Свои вкладки, кнопки, группы.",
+   "example": "<customUI><ribbon><tabs>\n  <tab id=\"myTab\" label=\"Мои инструменты\">\n    <group id=\"g1\" label=\"Отчёты\">\n      <button id=\"b1\" label=\"Создать\" onAction=\"CreateReport\"/>\n</group></tab></tabs></ribbon></customUI>",
+   "tip": "Custom UI Editor — бесплатный инструмент для редактирования Ribbon XML."
+  },
+  {
+   "title": "ByRef vs ByVal",
+   "subtitle": "Параметры",
+   "body": "ByRef (по умолчанию) — передаёт ссылку, изменения видны снаружи. ByVal — копия.",
+   "example": "Sub Double(ByRef x As Long)\n  x = x * 2\nEnd Sub\n' После вызова: x изменён!",
+   "tip": "Для безопасности используйте ByVal, если не нужно менять аргумент."
+  },
+  {
+   "title": "Collection",
+   "subtitle": "Структуры данных",
+   "body": "Упорядоченная коллекция с доступом по ключу или индексу.",
+   "example": "Dim col As New Collection\ncol.Add \"Иванов\", \"key1\"\ncol.Add \"Петров\", \"key2\"\nDebug.Print col(\"key1\")",
+   "tip": "Dictionary лучше для проверки Exists. Collection — для упорядоченных наборов."
+  }
+ ],
+ "4": [
+  {
+   "title": "Windows API",
+   "subtitle": "Системные вызовы",
+   "body": "Вызов функций Windows из VBA: файловые диалоги, буфер обмена, окна.",
+   "example": "#If VBA7 Then\nDeclare PtrSafe Function GetTickCount Lib \"kernel32\" () As Long\n#End If",
+   "tip": "VBA7 и PtrSafe обязательны для 64-bit Office."
+  },
+  {
+   "title": "Multithreading через VBScript",
+   "subtitle": "Параллелизм",
+   "body": "VBA однопоточный, но можно запускать параллельные VBScript через Shell.",
+   "example": "Shell \"wscript.exe \" & scriptPath, vbHide",
+   "tip": "Более надёжный вариант — разбить задачу между несколькими книгами Excel."
+  },
+  {
+   "title": "COM Add-in на VBA",
+   "subtitle": "Надстройки",
+   "body": "Создание .xlam надстройки с Ribbon UI, UDF и событиями приложения.",
+   "example": "' В ThisWorkbook модуле .xlam:\nPrivate Sub Workbook_Open()\n  ' Инициализация\nEnd Sub",
+   "tip": "Для распространения: подпишите VBA-проект цифровой подписью."
+  },
+  {
+   "title": "Оптимизация: массивы vs Range",
+   "subtitle": "Производительность",
+   "body": "1M ячеек через Range: 45 сек. Через массив: 0.3 сек. Разница в 150×.",
+   "example": "Dim arr: arr = rng.Value\nDim i As Long\nFor i = 1 To UBound(arr)\n  arr(i,1) = arr(i,1) * 2\nNext\nrng.Value = arr",
+   "tip": "Всегда читайте Range в массив, обрабатывайте, записывайте обратно."
+  },
+  {
+   "title": "Application-level Events",
+   "subtitle": "Продвинутые события",
+   "body": "Отслеживание событий всех книг: открытие, закрытие, печать, новый лист.",
+   "example": "' В модуле класса:\nPublic WithEvents App As Application\nPrivate Sub App_WorkbookOpen(ByVal Wb As Workbook)\n  ' ...\nEnd Sub",
+   "tip": "Создайте экземпляр класса в Workbook_Open модуля ThisWorkbook."
+  },
+  {
+   "title": "Recursion (рекурсия)",
+   "subtitle": "Алгоритмы",
+   "body": "Функция вызывает сама себя. Для обхода деревьев, папок, иерархий.",
+   "example": "Function Factorial(n As Long) As Long\n  If n <= 1 Then Factorial = 1 Else Factorial = n * Factorial(n - 1)\nEnd Function",
+   "tip": "VBA имеет ограничение стека ~5000 вызовов. Для глубокой рекурсии используйте цикл."
+  },
+  {
+   "title": "Interfaces (Implements)",
+   "subtitle": "ООП",
+   "body": "Реализация интерфейсов для полиморфизма. Один интерфейс — разные реализации.",
+   "example": "' IExporter interface class:\nPublic Sub Export(data As Variant): End Sub\n\n' clsCSV class:\nImplements IExporter\nPrivate Sub IExporter_Export(data As Variant)\n  ' CSV логика\nEnd Sub",
+   "tip": "Позволяет написать код, работающий с любым экспортёром через IExporter."
+  },
+  {
+   "title": "Late vs Early Binding",
+   "subtitle": "COM объекты",
+   "body": "Early: Set obj = New ClassName (быстрее, IntelliSense). Late: CreateObject (не требует ссылки).",
+   "example": "' Early (нужна ссылка):\nDim xl As New Excel.Application\n' Late (универсально):\nDim xl As Object\nSet xl = CreateObject(\"Excel.Application\")",
+   "tip": "Разрабатывайте с Early Binding, распространяйте с Late для совместимости."
+  },
+  {
+   "title": "Custom UDF",
+   "subtitle": "Пользовательские функции",
+   "body": "Function вместо Sub создаёт функцию для использования в формулах Excel.",
+   "example": "Function INN_Check(inn As String) As Boolean\n  ' проверка контрольной суммы ИНН\n  INN_Check = (calculated = actual)\nEnd Function",
+   "tip": "UDF не может менять другие ячейки. Для этого используйте события."
+  },
+  {
+   "title": "Binary File I/O",
+   "subtitle": "Работа с файлами",
+   "body": "Чтение/запись бинарных файлов. Быстрее чем текстовый ввод/вывод.",
+   "example": "Open path For Binary As #1\nDim buf() As Byte\nReDim buf(FileLen(path) - 1)\nGet #1, , buf\nClose #1",
+   "tip": "Для JSON/XML лучше использовать MSXML2 или ScriptControl."
+  }
+ ],
+ "5": [
+  {
+   "title": "Memory-mapped обработка",
+   "subtitle": "Экстремальная производительность",
+   "body": "Для файлов 1M+ строк: чтение в память массивом, обработка, запись. Без обращения к Sheet.",
+   "example": "' Чтение 1M строк за 2 сек:\nDim arr: arr = Range(\"A1:Z1000000\").Value2\n' .Value2 быстрее .Value (без форматирования дат)",
+   "tip": ".Value2 вместо .Value — на 15-20% быстрее для больших диапазонов."
+  },
+  {
+   "title": "Protect VBA Project",
+   "subtitle": "Безопасность",
+   "body": "Защита кода паролем и цифровой подписью. Обфускация для коммерческих решений.",
+   "example": "VBE → ПКМ на проекте → Properties → Protection → Lock → пароль",
+   "tip": "Пароль VBA легко взламывается. Для серьёзной защиты — COM DLL на C#."
+  },
+  {
+   "title": "VBA + Power Query",
+   "subtitle": "Интеграция",
+   "body": "VBA может обновлять и управлять запросами Power Query программно.",
+   "example": "ActiveWorkbook.Connections(\"Query - Data\").Refresh\n' или:\nActiveWorkbook.Queries(\"MyQuery\").Formula = newMCode",
+   "tip": "Let-выражение M-кода можно генерировать динамически из VBA."
+  },
+  {
+   "title": "Async операции",
+   "subtitle": "Продвинутый код",
+   "body": "XMLHTTP для асинхронных HTTP-запросов. Не блокирует Excel.",
+   "example": "Dim http As Object\nSet http = CreateObject(\"MSXML2.XMLHTTP\")\nhttp.Open \"GET\", url, True ' True = async\nhttp.send",
+   "tip": "ReadyState = 4 и Status = 200 означают успешное завершение."
+  },
+  {
+   "title": "Сборка мусора и утечки",
+   "subtitle": "Управление памятью",
+   "body": "Set obj = Nothing для освобождения COM-объектов. Без этого — утечки памяти.",
+   "example": "Dim ws As Worksheet\nSet ws = Worksheets(1)\n' ... работа ...\nSet ws = Nothing ' освобождение",
+   "tip": "В циклах с CreateObject обязательно: Set obj = Nothing в каждой итерации."
+  },
+  {
+   "title": "Shell + PowerShell",
+   "subtitle": "Системная интеграция",
+   "body": "Запуск PowerShell скриптов из VBA для задач, недоступных в VBA.",
+   "example": "Shell \"powershell -ExecutionPolicy Bypass -File C:\\script.ps1\", vbHide",
+   "tip": "WScript.Shell.Exec — захват вывода PowerShell обратно в VBA."
+  },
+  {
+   "title": "Unit Testing в VBA",
+   "subtitle": "Качество кода",
+   "body": "Фреймворки Rubberduck и vba-test для автоматического тестирования.",
+   "example": "Sub TestINN()\n  Assert.AreEqual True, INN_Check(\"7707083893\")\n  Assert.AreEqual False, INN_Check(\"0000000000\")\nEnd Sub",
+   "tip": "Rubberduck также добавляет рефакторинг, навигацию и статический анализ."
+  },
+  {
+   "title": "Compiler Directives",
+   "subtitle": "Кросс-платформенность",
+   "body": "Условная компиляция для разных версий Office (32/64 bit, Mac/Win).",
+   "example": "#If VBA7 Then\n  Declare PtrSafe Function ...\n#Else\n  Declare Function ...\n#End If\n#If Mac Then\n  ' Mac-специфичный код\n#End If",
+   "tip": "VBA7 = Office 2010+. Win64 = 64-битный Office (не Windows!)."
+  },
+  {
+   "title": "Custom Task Pane",
+   "subtitle": "Интерфейс",
+   "body": "Панель задач сбоку Excel. Через COM Add-in или WebBrowser control.",
+   "example": "' UserForm с WebBrowser:\nMe.WebBrowser1.Navigate \"file:///C:/ui/panel.html\"",
+   "tip": "HTML+JS интерфейс внутри VBA UserForm — современный подход."
+  },
+  {
+   "title": "64-bit совместимость",
+   "subtitle": "Миграция",
+   "body": "Переход на 64-bit Office требует изменений в API-вызовах и указателях.",
+   "example": "' Замена Long на LongPtr для указателей:\nDeclare PtrSafe Function FindWindow Lib \"user32\" _\n  (ByVal lpClassName As String, _\n   ByVal lpWindowName As String) As LongPtr",
+   "tip": "LongPtr автоматически 4 байта в 32-bit и 8 в 64-bit. Используйте везде для hWnd, hDC."
+  }
+ ]
+}
