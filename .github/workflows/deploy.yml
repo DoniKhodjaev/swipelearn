@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -21,12 +22,5 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-Теперь пушь:
-```
-git add .
-git commit -m "first commit"
-git push -u origin main
+      - uses: actions/deploy-pages@v4
+        id: deployment
